@@ -1,0 +1,436 @@
+/* ============================================================
+   00. BASE
+   ============================================================ */
+#mc2 {
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  color: #0a2b50;
+  background: #fff;
+  line-height: 1.55;
+}
+
+#mc2 * { box-sizing: border-box; }
+#mc2 img { display: block; max-width: 100%; }
+#mc2 a { text-decoration: none; }
+#mc2 .wrap { width: min(1180px, calc(100% - 36px)); margin: auto; }
+
+/* 공통 섹션 */
+#mc2 .sec { padding: 90px 0; }
+#mc2 .k {
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: #007d91;
+  font-weight: 900;
+}
+#mc2 .sec h2 {
+  font-size: 43px;
+  line-height: 1.15;
+  letter-spacing: -.045em;
+  margin: 10px 0 16px;
+}
+#mc2 em { font-style: normal; color: #d5a84b; }
+#mc2 .lead { font-size: 18px; color: #657286; margin: 0 0 32px; }
+
+/* 공통 버튼 */
+#mc2 .ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+#mc2 .ctas a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 22px;
+  border-radius: 16px;
+  font-weight: 900;
+}
+#mc2 .call { background: #fff; color: #0a2b50; }
+#mc2 .sms { background: #c9a052; color: #fff; }
+#mc2 .info { border: 1px solid #ffffff99; color: #fff; background: #092b4a99; }
+
+/* ============================================================
+   01. HERO
+   ============================================================ */
+#mc2 .hero {
+  min-height: 720px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #071c32;
+  overflow: hidden;
+}
+#mc2 .hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#mc2 .hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(4,22,40,.9), rgba(4,22,40,.55) 48%, rgba(4,22,40,.12));
+}
+#mc2 .hero-in {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  padding: 70px 0 100px;
+}
+#mc2 .badge {
+  display: inline-block;
+  border: 1px solid #ffffff66;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+}
+#mc2 .hero h1 {
+  font-size: 66px;
+  line-height: 1.08;
+  letter-spacing: -.06em;
+  margin: 28px 0 20px;
+}
+#mc2 .hero h1 b { color: #d5a84b; }
+#mc2 .hero-copy { max-width: 720px; margin: 0; }
+#mc2 .hero-copy strong { display: block; font-size: 22px; line-height: 1.45; }
+#mc2 .hero-copy span { display: block; font-size: 17px; margin-top: 7px; color: #edf2f6; }
+#mc2 .hero-note {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #061522c9;
+  color: #dce6ef;
+  font-size: 11px;
+  padding: 10px 18px;
+  text-align: center;
+}
+
+/* ============================================================
+   02. QUICK STATS
+   ============================================================ */
+#mc2 .stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: -42px;
+  position: relative;
+  z-index: 4;
+}
+#mc2 .stats > div {
+  background: #fff;
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 14px 35px #17324c1f;
+}
+#mc2 .stats b { display: block; font-size: 31px; }
+#mc2 .stats span { font-size: 13px; color: #6b7787; }
+
+/* ============================================================
+   03. MEGA LIVING
+   ============================================================ */
+#mc2 .site-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(340px, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+#mc2 .site-main { width: 100%; border-radius: 22px; }
+#mc2 .site-photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+#mc2 .site-photos figure {
+  margin: 0;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  height: 150px;
+}
+#mc2 .site-photos img { width: 100%; height: 100%; object-fit: cover; }
+#mc2 .site-photos figcaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 12px 10px;
+  color: #fff;
+  font-weight: 800;
+  background: linear-gradient(transparent, #000b);
+}
+#mc2 .site-overview-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+#mc2 .site-overview {
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  background: #fff;
+}
+
+/* ============================================================
+   04. COMMUNITY
+   ============================================================ */
+#mc2 .dark { background: #0c1a25; color: #fff; }
+#mc2 .dark .lead { color: #bac5cf; }
+#mc2 .community {
+  display: grid;
+  grid-template-columns: 1.45fr .8fr .8fr;
+  grid-template-rows: 270px 270px;
+  gap: 14px;
+}
+#mc2 .community article {
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #1e303e;
+}
+#mc2 .community .sky { grid-row: 1 / 3; }
+#mc2 .community img { width: 100%; height: 100%; object-fit: cover; }
+#mc2 .community article > div {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 50px 18px 16px;
+  background: linear-gradient(transparent, #000d);
+}
+#mc2 .community b,
+#mc2 .community span { display: block; }
+#mc2 .community b { font-size: 23px; }
+#mc2 .community span { font-size: 13px; color: #eef2f5; }
+
+/* ============================================================
+   05. SPECIAL PLAN
+   ============================================================ */
+#mc2 .special {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+#mc2 .special article {
+  border: 1px solid #e3e8ee;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+#mc2 .special img { width: 100%; height: 260px; object-fit: cover; }
+#mc2 .special article > div { padding: 22px; flex: 1; }
+#mc2 .special i {
+  font-style: normal;
+  background: #087f93;
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 11px;
+  font-weight: 900;
+}
+#mc2 .special h3 { font-size: 25px; line-height: 1.28; margin: 18px 0 10px; }
+#mc2 .special p { color: #647184; }
+
+/* ============================================================
+   06. LOCATION VALUE
+   ============================================================ */
+#mc2 .location { background: #f6f8fa; }
+#mc2 .loc-main { width: 100%; border-radius: 22px; }
+#mc2 .loc-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+#mc2 .loc-cards article {
+  background: #fff;
+  border: 1px solid #e1e6ec;
+  border-radius: 18px;
+  padding: 14px;
+  min-height: 175px;
+}
+#mc2 .loc-cards img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 11px;
+  margin-bottom: 12px;
+}
+#mc2 .loc-cards b,
+#mc2 .loc-cards span { display: block; }
+#mc2 .loc-cards b { font-size: 18px; }
+#mc2 .loc-cards span { font-size: 13px; color: #687588; margin-top: 5px; }
+#mc2 .textcard { display: flex; flex-direction: column; justify-content: center; }
+#mc2 .textcard b { font-size: 26px !important; color: #087f93; }
+
+/* ============================================================
+   07. UNIT PLAN
+   ============================================================ */
+#mc2 .unit-switch > input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+#mc2 .tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 24px 0 12px;
+}
+#mc2 .tabs label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  height: 42px;
+  padding: 0 13px;
+  border: 1px solid #b8d1df;
+  border-radius: 999px;
+  background: #fff;
+  color: #062f50;
+  font-weight: 800;
+  cursor: pointer;
+  user-select: none;
+}
+#mc2 .unit {
+  border: 1px solid #b8d1df;
+  border-radius: 22px;
+  padding: 28px;
+  background: #eef9ff;
+}
+#mc2 .unit img {
+  display: none;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* 선택된 평형만 표시 : JavaScript 불필요 */
+#mc2 #mc-unit-38:checked ~ .tabs label[for="mc-unit-38"],
+#mc2 #mc-unit-46:checked ~ .tabs label[for="mc-unit-46"],
+#mc2 #mc-unit-59:checked ~ .tabs label[for="mc-unit-59"],
+#mc2 #mc-unit-74a:checked ~ .tabs label[for="mc-unit-74a"],
+#mc2 #mc-unit-74b:checked ~ .tabs label[for="mc-unit-74b"],
+#mc2 #mc-unit-84a:checked ~ .tabs label[for="mc-unit-84a"],
+#mc2 #mc-unit-84b:checked ~ .tabs label[for="mc-unit-84b"],
+#mc2 #mc-unit-84c:checked ~ .tabs label[for="mc-unit-84c"],
+#mc2 #mc-unit-101a:checked ~ .tabs label[for="mc-unit-101a"],
+#mc2 #mc-unit-101b:checked ~ .tabs label[for="mc-unit-101b"],
+#mc2 #mc-unit-136a:checked ~ .tabs label[for="mc-unit-136a"],
+#mc2 #mc-unit-136b:checked ~ .tabs label[for="mc-unit-136b"] {
+  background: #087f93;
+  color: #fff;
+  border-color: #087f93;
+}
+#mc2 #mc-unit-38:checked ~ .unit .unit-38,
+#mc2 #mc-unit-46:checked ~ .unit .unit-46,
+#mc2 #mc-unit-59:checked ~ .unit .unit-59,
+#mc2 #mc-unit-74a:checked ~ .unit .unit-74a,
+#mc2 #mc-unit-74b:checked ~ .unit .unit-74b,
+#mc2 #mc-unit-84a:checked ~ .unit .unit-84a,
+#mc2 #mc-unit-84b:checked ~ .unit .unit-84b,
+#mc2 #mc-unit-84c:checked ~ .unit .unit-84c,
+#mc2 #mc-unit-101a:checked ~ .unit .unit-101a,
+#mc2 #mc-unit-101b:checked ~ .unit .unit-101b,
+#mc2 #mc-unit-136a:checked ~ .unit .unit-136a,
+#mc2 #mc-unit-136b:checked ~ .unit .unit-136b { display: block; }
+
+/* ============================================================
+   08. CONSULTATION / NOTICE
+   ============================================================ */
+#mc2 .consult {
+  background: linear-gradient(135deg, #0a6072, #10354a);
+  color: #fff;
+  text-align: center;
+  padding: 78px 0;
+}
+#mc2 .consult small { letter-spacing: .18em; font-weight: 900; }
+#mc2 .consult h2 { font-size: 42px; line-height: 1.2; margin: 10px 0 14px; }
+#mc2 .consult p { color: #e7f0f4; font-size: 18px; }
+#mc2 .center { justify-content: center; }
+#mc2 .notice { background: #f1f3f5; padding: 28px 0; }
+#mc2 .notice p { font-size: 11px; color: #6c7582; margin: 5px 0; }
+
+/* 모바일 고정 상담바: PC에서는 숨김 */
+#mc2 .mobile { display: none; }
+
+/* ============================================================
+   09. MOBILE
+   ============================================================ */
+@media (max-width: 800px) {
+  #mc2 .wrap { width: calc(100% - 24px); } 
+  #mc2 .hero { min-height: 670px; }
+  #mc2 .hero-bg { object-position: 48% center; }
+  #mc2 .hero h1 { font-size: 45px; }
+  #mc2 .hero-copy strong { font-size: 18px; }
+  #mc2 .hero-copy span { font-size: 15px; }
+
+  #mc2 .ctas { display: grid; grid-template-columns: 1fr 1fr; }
+  #mc2 .ctas .call { grid-column: 1 / 3; }
+  #mc2 .ctas a { padding: 14px 10px; }
+
+  #mc2 .stats { grid-template-columns: 1fr 1fr; margin-top: -28px; }
+  #mc2 .stats > div { padding: 18px 8px; }
+  #mc2 .stats b { font-size: 25px; }
+
+  #mc2 .sec { padding: 62px 0; }
+  #mc2 .sec h2 { font-size: 33px; }
+  #mc2 .lead { font-size: 16px; }
+
+  /* 단지배치도 → 보조사진 3장 → 사업개요 */
+  #mc2 .site-grid { grid-template-columns: 1fr; }
+  #mc2 .site-photos { grid-template-columns: 1fr; }
+  #mc2 .site-photos figure { height: 190px; }
+  #mc2 .site-overview-wrap { margin-top: 10px; }
+  #mc2 .site-overview { max-width: 100%; }
+
+  #mc2 .community {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 300px 210px 210px;
+  }
+  #mc2 .community .sky { grid-column: 1 / 3; grid-row: auto; }
+  #mc2 .community b { font-size: 19px; }
+
+  #mc2 .special { grid-template-columns: 1fr; }
+  #mc2 .special img { height: auto; }
+
+  #mc2 .loc-cards { grid-template-columns: 1fr; }
+  #mc2 .loc-cards article { min-height: 0; }
+  #mc2 .loc-cards img { height: 170px; }
+  #mc2 .textcard { min-height: 145px !important; }
+
+  #mc2 .consult { padding-bottom: 100px; }
+  #mc2 .consult h2 { font-size: 32px; }
+  #mc2 .consult .ctas { grid-template-columns: 1fr; }
+  #mc2 .consult .ctas .call { grid-column: auto; }
+
+  #mc2 .mobile {
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    box-shadow: 0 -5px 20px #0003;
+  }
+  #mc2 .mobile a {
+    flex: 1;
+    text-align: center;
+    padding: 15px 6px;
+    color: #fff;
+    font-weight: 900;
+  }
+  #mc2 .mobile a:first-child { background: #087f93; }
+  #mc2 .mobile a:last-child { background: #172d42; }
+}
+/* ============================================================
+   10. INDEPENDENT HOSTING BASE
+   아임웹 외부 독립 실행을 위한 최소 브라우저 초기화
+   ============================================================ */
+html, body { margin: 0; padding: 0; }
+body { background: #fff; }
