@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="mc2" data-phone="010-8132-0039">
+<div id="mc2" data-phone="1555-4940">
 
   <!-- =========================================================
        01. HERO
@@ -18,7 +18,6 @@
     <div class="hero-shade"></div>
 
     <div class="wrap hero-in">
-      <div class="badge">📍 창원 · 마산회원구 회원2동</div>
 
       <h1>
         창원 한신더휴<br>
@@ -31,8 +30,7 @@
       </p>
 
       <div class="ctas">
-        <a class="call" href="tel:010-8132-0039">📞 전화상담&nbsp; 윤세라 팀장 · 010-8132-0039</a>
-        <a class="sms" href="sms:010-8132-0039">💬 문자상담</a>
+        <a class="call hero-call" href="tel:1555-4940">📞 모델하우스 방문예약 상담 1555-4940</a>
       </div>
     </div>
     
@@ -60,24 +58,66 @@
         <div class="site-left">         
           <img class="site-main" src="images/site-plan.png" alt="단지배치도">
 
-          <div class="site-photos">
-            <figure>
-              <img src="images/site-a.jpg" alt="대단지 조감도">
-              <figcaption>대단지 조감도</figcaption>
-            </figure>
-            <figure>
-              <img src="images/site-b.jpg" alt="임항선 그린웨이">
-              <figcaption>임항선 그린웨이</figcaption>
-            </figure>
-            <figure>
-              <img src="images/site-c.jpg" alt="공원형 주거환경">
-              <figcaption>공원형 주거환경</figcaption>
-            </figure>
-          </div>
         </div>
 
         <div class="site-overview-wrap">
           <img class="site-overview" src="images/overview.png" alt="사업개요">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       07. UNIT PLAN
+       ※ 각 변수 슬롯에 같은 이름의 평면 이미지를 등록합니다.
+       ========================================================= -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="k">UNIT PLAN</div>
+      <h2>우리 가족에게 맞는<br><em>공간을 찾아보세요</em></h2>
+      <p class="lead">라이프스타일과 가족 구성에 맞춰 다양한 주택형의 공간 설계를 확인해보세요.</p>
+
+      <!-- JS 없이 동작하는 UNIT PLAN : radio + label 방식 -->
+      <div class="unit-switch">
+        <input type="radio" name="mc-unit" id="mc-unit-38" checked>
+        <input type="radio" name="mc-unit" id="mc-unit-46">
+        <input type="radio" name="mc-unit" id="mc-unit-59">
+        <input type="radio" name="mc-unit" id="mc-unit-74a">
+        <input type="radio" name="mc-unit" id="mc-unit-74b">
+        <input type="radio" name="mc-unit" id="mc-unit-84a">
+        <input type="radio" name="mc-unit" id="mc-unit-84b">
+        <input type="radio" name="mc-unit" id="mc-unit-84c">
+        <input type="radio" name="mc-unit" id="mc-unit-101a">
+        <input type="radio" name="mc-unit" id="mc-unit-101b">
+        <input type="radio" name="mc-unit" id="mc-unit-136a">
+        <input type="radio" name="mc-unit" id="mc-unit-136b">
+        <div class="tabs" role="tablist" aria-label="주택형 선택">
+          <label for="mc-unit-38">38</label>
+          <label for="mc-unit-46">46</label>
+          <label for="mc-unit-59">59</label>
+          <label for="mc-unit-74a">74A</label>
+          <label for="mc-unit-74b">74B</label>
+          <label for="mc-unit-84a">84A</label>
+          <label for="mc-unit-84b">84B</label>
+          <label for="mc-unit-84c">84C</label>
+          <label for="mc-unit-101a">101A</label>
+          <label for="mc-unit-101b">101B</label>
+          <label for="mc-unit-136a">136A</label>
+          <label for="mc-unit-136b">136B</label>
+        </div>
+        <div class="unit">
+          <img class="unit-38" src="images/unit-38.jpg" alt="38㎡ 주택형 평면도">
+          <img class="unit-46" src="images/unit-46.jpg" alt="46㎡ 주택형 평면도">
+          <img class="unit-59" src="images/unit-59.jpg" alt="59㎡ 주택형 평면도">
+          <img class="unit-74a" src="images/unit-74a.jpg" alt="74A㎡ 주택형 평면도">
+          <img class="unit-74b" src="images/unit-74b.jpg" alt="74B㎡ 주택형 평면도">
+          <img class="unit-84a" src="images/unit-84a.jpg" alt="84A㎡ 주택형 평면도">
+          <img class="unit-84b" src="images/unit-84b.jpg" alt="84B㎡ 주택형 평면도">
+          <img class="unit-84c" src="images/unit-84c.jpg" alt="84C㎡ 주택형 평면도">
+          <img class="unit-101a" src="images/unit-101a.jpg" alt="101A㎡ 주택형 평면도">
+          <img class="unit-101b" src="images/unit-101b.jpg" alt="101B㎡ 주택형 평면도">
+          <img class="unit-136a" src="images/unit-136a.jpg" alt="136A㎡ 주택형 평면도">
+          <img class="unit-136b" src="images/unit-136b.jpg" alt="136B㎡ 주택형 평면도">
         </div>
       </div>
     </div>
@@ -179,85 +219,6 @@
 
       <img class="loc-main" src="images/location.jpg" alt="입지종합도">
 
-      <div class="loc-cards">
-        <article>
-          <img src="images/school1.jpg" alt="회원초등학교">
-          <b>회원초 도보 1분</b>
-          <span>아이의 매일 등하교가 가까워지는 교육환경</span>
-        </article>
-
-        <article>
-          <img src="images/school2.jpg" alt="마산동중학교">
-          <b>마산동중 도보 3분</b>
-          <span>초·중학교를 가까이 누리는 교육환경</span>
-        </article>
-
-        <article class="textcard">
-          <b>생활과 자연을 함께</b>
-          <span>생활인프라와 자연환경을 함께 누리는 입지</span>
-        </article>
-
-        <article class="textcard">
-          <b>KTX · SRT</b>
-          <span>마산역과 주요 교통망을 통한 광역교통 접근성</span>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       07. UNIT PLAN
-       ※ 각 변수 슬롯에 같은 이름의 평면 이미지를 등록합니다.
-       ========================================================= -->
-  <section class="sec">
-    <div class="wrap">
-      <div class="k">UNIT PLAN</div>
-      <h2>우리 가족에게 맞는<br><em>공간을 찾아보세요</em></h2>
-      <p class="lead">라이프스타일과 가족 구성에 맞춰 다양한 주택형의 공간 설계를 확인해보세요.</p>
-
-      <!-- JS 없이 동작하는 UNIT PLAN : radio + label 방식 -->
-      <div class="unit-switch">
-        <input type="radio" name="mc-unit" id="mc-unit-38" checked>
-        <input type="radio" name="mc-unit" id="mc-unit-46">
-        <input type="radio" name="mc-unit" id="mc-unit-59">
-        <input type="radio" name="mc-unit" id="mc-unit-74a">
-        <input type="radio" name="mc-unit" id="mc-unit-74b">
-        <input type="radio" name="mc-unit" id="mc-unit-84a">
-        <input type="radio" name="mc-unit" id="mc-unit-84b">
-        <input type="radio" name="mc-unit" id="mc-unit-84c">
-        <input type="radio" name="mc-unit" id="mc-unit-101a">
-        <input type="radio" name="mc-unit" id="mc-unit-101b">
-        <input type="radio" name="mc-unit" id="mc-unit-136a">
-        <input type="radio" name="mc-unit" id="mc-unit-136b">
-        <div class="tabs" role="tablist" aria-label="주택형 선택">
-          <label for="mc-unit-38">38</label>
-          <label for="mc-unit-46">46</label>
-          <label for="mc-unit-59">59</label>
-          <label for="mc-unit-74a">74A</label>
-          <label for="mc-unit-74b">74B</label>
-          <label for="mc-unit-84a">84A</label>
-          <label for="mc-unit-84b">84B</label>
-          <label for="mc-unit-84c">84C</label>
-          <label for="mc-unit-101a">101A</label>
-          <label for="mc-unit-101b">101B</label>
-          <label for="mc-unit-136a">136A</label>
-          <label for="mc-unit-136b">136B</label>
-        </div>
-        <div class="unit">
-          <img class="unit-38" src="images/unit-38.jpg" alt="38㎡ 주택형 평면도">
-          <img class="unit-46" src="images/unit-46.jpg" alt="46㎡ 주택형 평면도">
-          <img class="unit-59" src="images/unit-59.jpg" alt="59㎡ 주택형 평면도">
-          <img class="unit-74a" src="images/unit-74a.jpg" alt="74A㎡ 주택형 평면도">
-          <img class="unit-74b" src="images/unit-74b.jpg" alt="74B㎡ 주택형 평면도">
-          <img class="unit-84a" src="images/unit-84a.jpg" alt="84A㎡ 주택형 평면도">
-          <img class="unit-84b" src="images/unit-84b.jpg" alt="84B㎡ 주택형 평면도">
-          <img class="unit-84c" src="images/unit-84c.jpg" alt="84C㎡ 주택형 평면도">
-          <img class="unit-101a" src="images/unit-101a.jpg" alt="101A㎡ 주택형 평면도">
-          <img class="unit-101b" src="images/unit-101b.jpg" alt="101B㎡ 주택형 평면도">
-          <img class="unit-136a" src="images/unit-136a.jpg" alt="136A㎡ 주택형 평면도">
-          <img class="unit-136b" src="images/unit-136b.jpg" alt="136B㎡ 주택형 평면도">
-        </div>
-      </div>
     </div>
   </section>
 
@@ -270,33 +231,21 @@
       <small>CONSULTATION</small>
       <h2>궁금한 점은<br>담당자에게 바로 문의하세요</h2>
 
-      <p>
-        <b>윤세라 팀장</b> · 010-8132-0039<br>
-        분양조건부터 주택형, 방문상담까지 궁금한 내용을 편하게 문의해 주세요.
-      </p>
-
       <div class="ctas center">
-        <a class="call" href="tel:010-8132-0039">📞 전화상담&nbsp; 윤세라 팀장 · 010-8132-0039</a>
-        <a class="sms" href="sms:010-8132-0039">💬 문자상담</a>
+        <a class="call consult-call" href="tel:1555-4940">📞 모델하우스 방문예약 상담 1555-4940</a>
       </div>
-    </div>
-  </section>
 
-  <!-- =========================================================
-       09. NOTICE
-       ========================================================= -->
-  <section class="notice">
-    <div class="wrap">
-      <p>① 상기 CG 및 이미지는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다르며 인·허가 과정에서 다소 변경될 수 있으니 견본주택을 방문하시어 직접 확인하시기 바랍니다.</p>
-      <p>② 홈페이지의 제작과정상 오탈자 등 오류가 있을 수 있으므로 계약 시 반드시 확인하시기 바랍니다.</p>
-      <p>③ 상기 설계관련 내용은 향후 인·허가 과정 및 실시공 시 일부 변경될 수 있으니, 계약 시 꼭 확인하시기 바랍니다.</p>
+      <div class="notice notice-in-consult">
+        <p>① 상기 CG 및 이미지는 소비자의 이해를 돕기 위해 제작된 것으로 실제와 다르며 인·허가 과정에서 다소 변경될 수 있으니 견본주택을 방문하시어 직접 확인하시기 바랍니다.</p>
+        <p>② 홈페이지의 제작과정상 오탈자 등 오류가 있을 수 있으므로 계약 시 반드시 확인하시기 바랍니다.</p>
+        <p>③ 상기 설계관련 내용은 향후 인·허가 과정 및 실시공 시 일부 변경될 수 있으니, 계약 시 꼭 확인하시기 바랍니다.</p>
+      </div>
     </div>
   </section>
 
   <!-- 모바일 고정 상담바 -->
   <div class="mobile">
-    <a href="tel:010-8132-0039">📞 윤세라 팀장 전화상담</a>
-    <a href="sms:010-8132-0039">💬 문자상담</a>
+    <a href="tel:1555-4940">📞 모델하우스 방문예약 상담 1555-4940</a>
   </div>
 
 </div>

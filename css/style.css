@@ -434,3 +434,84 @@
    ============================================================ */
 html, body { margin: 0; padding: 0; }
 body { background: #fff; }
+
+/* ============================================================
+   11. FINAL REVISION 2026-09-13
+   ============================================================ */
+#mc2 .hero-call,
+#mc2 .consult-call {
+  font-size: 1.5em;
+}
+
+/* MEGA LIVING: 보조사진 삭제 후 메인 배치도 중심 */
+#mc2 .site-left { min-width: 0; }
+
+/* 모바일 최종 조정 */
+@media (max-width: 800px) {
+  #mc2 .hero .ctas { grid-template-columns: 1fr; }
+  #mc2 .hero .ctas .call { grid-column: auto; }
+  #mc2 .hero-call { font-size: 18px; }
+
+  /* COMMUNITY: 사진만 표시, 섹션 바깥 흰 여백 방지 */
+  #mc2 .dark { overflow: hidden; }
+  #mc2 .community article > div { display: none; }
+  #mc2 .community { margin-bottom: 0; }
+
+  /* SPECIAL PLAN: 모바일만 설명 위 / 사진 아래 */
+  #mc2 .special article {
+    border: 1px solid #d9e1e8;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  #mc2 .special article > div { order: 1; }
+  #mc2 .special article > img { order: 2; }
+
+  /* CONSULTATION / NOTICE: 고정 상담바와 고지문 겹침 방지 */
+  #mc2 .consult { padding-bottom: 54px; }
+  #mc2 .consult-call { font-size: 18px; }
+  #mc2 .notice { padding: 24px 0 88px; }
+  #mc2 .mobile a { width: 100%; font-size: 16px; }
+}
+
+
+/* ============================================================
+   12. FINAL REVISION V2 - NOTICE / MOBILE SPECIAL
+   ============================================================ */
+
+/* 법적 고지: CONSULTATION 내부로 올려 배치 */
+#mc2 .notice-in-consult {
+  background: transparent;
+  padding: 34px 0 0;
+  margin-top: 24px;
+  border-top: 1px solid rgba(255,255,255,.22);
+  text-align: left;
+}
+#mc2 .notice-in-consult p {
+  color: rgba(255,255,255,.72);
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+@media (max-width: 800px) {
+  /* SPECIAL PLAN: 모바일에서 반드시 설명 → 사진 순서 */
+  #mc2 .special article {
+    display: flex;
+    flex-direction: column;
+  }
+  #mc2 .special article > div { order: 1; }
+  #mc2 .special article > img { order: 2; }
+
+  /* 법적 고지문을 상담버튼 바로 아래에 노출하고 고정바에 가리지 않게 충분한 여백 확보 */
+  #mc2 .consult {
+    padding-bottom: 92px;
+  }
+  #mc2 .notice-in-consult {
+    padding-top: 24px;
+    margin-top: 22px;
+  }
+  #mc2 .notice-in-consult p {
+    font-size: 10px;
+    line-height: 1.55;
+  }
+}
