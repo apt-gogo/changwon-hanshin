@@ -515,3 +515,51 @@ body { background: #fff; }
     line-height: 1.55;
   }
 }
+
+/* ============================================================
+   13. FINAL REVISION V3 - MOBILE COMMUNITY / ACTION BAR
+   ============================================================ */
+@media (max-width: 800px) {
+  /* COMMUNITY: 시설명은 사진 안에 표시하고 설명만 숨김 */
+  #mc2 .community article > div {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 34px 12px 10px;
+    background: linear-gradient(transparent, rgba(0,0,0,.78));
+    z-index: 2;
+    pointer-events: none;
+  }
+  #mc2 .community article > div b {
+    display: block;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.2;
+    white-space: normal;
+    text-shadow: 0 1px 3px rgba(0,0,0,.55);
+  }
+  #mc2 .community article > div span { display: none; }
+  #mc2 .community article { background: #0c1a25; }
+  #mc2 .community img { background: #0c1a25; }
+
+  /* 모바일 하단 고정바: 전화상담 + 관심고객등록 */
+  #mc2 .mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: transparent;
+  }
+  #mc2 .mobile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 64px;
+    padding: 12px 8px;
+    font-size: 15px;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  #mc2 .mobile .mobile-call { background: #172d42; }
+  #mc2 .mobile .mobile-register { background: #d5a84b; color: #fff; }
+}

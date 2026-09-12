@@ -1,21 +1,28 @@
-창원 한신더휴 메가센텀 - 독립 홈페이지 최종 수정본
+창원 한신더휴 메가센텀 - 독립 홈페이지 최종본
 
 구조
 - index.html
+- reservation.html
 - css/style.css
+- css/reservation.css
+- js/reservation.js
 - images/
 
-상담정보
-- 모델하우스 방문예약 상담 1555-4940
+메인 홈페이지
+- 상담번호: 1555-4940
+- 모바일 하단 고정바: 전화상담 1555-4940 / 관심고객등록
+- 관심고객등록 버튼은 reservation.html로 이동
 
-페이지 순서
-HERO → MEGA LIVING → UNIT PLAN → COMMUNITY → SPECIAL PLAN → LOCATION VALUE → CONSULTATION
+관심고객 등록 페이지
+- 이름: 필수
+- 휴대폰번호: 필수
+- 방문예약일: 선택
+- 방문예약시간: 선택 (10:00~19:00, 30분 단위)
+- 개인정보 수집 및 이용 동의: 필수
+- 마케팅 정보 수신 동의: 선택
 
-배포
-GitHub Pages 저장소 루트에 위 파일/폴더를 그대로 업로드합니다.
-UNIT PLAN은 JavaScript 없이 CSS radio 방식으로 동작합니다.
-
-
-최종 수정 V2
-- 법적 고지문을 CONSULTATION 내부로 이동
-- 모바일 SPECIAL PLAN은 설명글 → 사진 순서
+중요
+- 현재 버전은 등록 화면과 입력 검증까지만 구현되어 있습니다.
+- Supabase 등 서버 DB 저장 기능은 차후 연결 예정입니다.
+- 현재 [등록하기]를 누르면 데이터가 저장되지 않고 안내 메시지만 표시됩니다.
+- UNIT PLAN은 JavaScript 없이 CSS radio 방식으로 동작합니다.
