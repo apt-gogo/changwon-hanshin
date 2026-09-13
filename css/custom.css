@@ -73,13 +73,13 @@
     --page-padding-y: 54px;
 
     /* HERO 제목/문구 위치 및 크기 */
-    --mobile-hero-top-gap: 28px;        /* 숫자↑ = HERO 전체가 아래로 내려감 */
+    --mobile-hero-top-gap: 15px;        /* 숫자↑ = HERO 전체가 아래로 내려감 */
     --mobile-hero-title-size: 43px;     /* '창원 한신더휴 / 메가센텀' */
     --mobile-hero-copy-size: 16px;      /* '2,016세대 메가스케일, 새로운 주거공간' */
 
     /* HERO 상담버튼 */
-    --mobile-call-label-size: 15px;     /* '모델하우스 방문예약 상담' */
-    --mobile-call-number-size: 23px;    /* '1555-4940' */
+    --mobile-call-label-size: 20px;     /* '모델하우스 방문예약 상담' */
+    --mobile-call-number-size: 30px;    /* '1555-4940' */
     --mobile-call-icon-size: 24px;      /* 전화 아이콘 */
 
     /* HERO 하단 4개 통계 */
