@@ -138,8 +138,6 @@
         source_detail: APT_GOGO_SITE_CODE
       };
 	
-      alert("메시지=[" + customerMessage + "]");
-
       const { error } = await client
         .from('trn_apt_customer')
         .insert(payload);
