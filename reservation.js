@@ -161,10 +161,18 @@
     window.location.replace(SITE_CONFIG.site.homepageUrl);
     }, SITE_CONFIG.reservation.successRedirectDelayMs);	
 
-    } catch (error) {
-      console.error('관심고객 등록 오류:', error);
-      setStatus('등록 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화상담을 이용해 주세요.', 'error');
-    } finally {
+    } 
+    
+    catch (error) {
+    console.error('관심고객 등록 오류:', error);
+
+    setStatus(
+        '등록 오류: ' + (error.message || error),
+        'error'
+      );
+    }
+    
+    finally {
       setSubmitting(false);
     }
   });
