@@ -98,165 +98,61 @@ button { cursor: pointer; }
   .mobile-customer-list { display: block; padding: 0 16px; }
 }
 
-
 /* ============================================================
-   관리자 시작화면
-   ------------------------------------------------------------
-   /admin/home.html
-   휴대폰에서 바로 홈페이지/등록고객조회로 이동하기 위한 메뉴
+   관심고객 1차 방어 기능
    ============================================================ */
-.admin-home-shell {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 28px 18px;
-}
-
-.admin-home-card {
-  width: min(680px, 100%);
-  padding: 34px;
-  background: #fff;
-  border: 1px solid var(--admin-line);
-  border-radius: 22px;
-  box-shadow: 0 18px 55px rgba(28,43,56,.10);
-}
-
-.admin-home-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 22px;
-}
-
-.admin-home-card h1 {
-  margin: 0;
+.completed-button.is-active {
+  background: #eef4f6;
+  border-color: #9fb8c1;
   color: var(--admin-navy);
-  font-size: 31px;
-  line-height: 1.25;
 }
 
-.admin-home-help {
-  margin: 10px 0 0;
-  color: var(--admin-muted);
-  font-size: 14px;
+.confirm-button {
+  border: 0;
+  border-radius: 9px;
+  background: var(--admin-navy);
+  color: #fff;
+  padding: 8px 12px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.admin-home-user {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 9px;
+.confirm-button:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
+.confirmed-label,
+.mobile-confirmed-label {
   color: var(--admin-muted);
   font-size: 12px;
+  font-weight: 800;
 }
 
-.admin-home-menu {
-  display: grid;
-  gap: 14px;
-  margin-top: 30px;
+.action-cell {
+  text-align: center;
 }
 
-.admin-menu-button {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  min-height: 96px;
-  padding: 20px 22px;
-  border: 1px solid var(--admin-line);
-  border-radius: 15px;
-  color: var(--admin-text);
-  background: #fff;
-  text-decoration: none;
-  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+.mobile-confirm-button {
+  width: 100%;
+  margin-top: 14px;
+  min-height: 44px;
 }
 
-.admin-menu-button:hover {
-  transform: translateY(-1px);
-  border-color: #cbd4da;
-  box-shadow: 0 8px 24px rgba(27,44,59,.08);
-}
-
-.admin-menu-icon {
-  display: grid;
-  place-items: center;
-  flex: 0 0 54px;
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  background: #f3f6f8;
-  color: var(--admin-navy);
-  font-size: 29px;
-  font-weight: 900;
-}
-
-.admin-menu-button strong {
-  display: block;
-  color: var(--admin-navy);
-  font-size: 20px;
-  line-height: 1.35;
-}
-
-.admin-menu-button small {
-  display: block;
-  margin-top: 5px;
-  color: var(--admin-muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.admin-menu-customers {
-  border-color: rgba(11,96,119,.28);
+.mobile-confirmed-label {
+  margin-top: 12px;
+  text-align: right;
 }
 
 @media (max-width: 520px) {
-  .admin-home-shell {
-    place-items: start center;
-    padding: 18px 12px;
+  .filter-grid {
+    grid-template-columns: 1fr 1fr;
   }
 
-  .admin-home-card {
-    padding: 26px 18px;
-    border-radius: 18px;
-  }
-
-  .admin-home-top {
-    display: block;
-  }
-
-  .admin-home-card h1 {
-    font-size: 27px;
-  }
-
-  .admin-home-user {
-    align-items: stretch;
-    margin-top: 18px;
-  }
-
-  .admin-home-user .secondary-button {
-    width: 100%;
-  }
-
-  .admin-home-menu {
-    margin-top: 24px;
-  }
-
-  .admin-menu-button {
-    min-height: 94px;
-    padding: 17px;
-  }
-
-  .admin-menu-icon {
-    flex-basis: 50px;
-    width: 50px;
-    height: 50px;
-    font-size: 26px;
-  }
-
-  .admin-menu-button strong {
-    font-size: 18px;
-  }
-
-  .admin-menu-button small {
-    font-size: 12px;
+  .filter-grid label:nth-of-type(3),
+  .filter-grid #searchButton,
+  .filter-grid #completedButton {
+    grid-column: 1 / -1;
   }
 }
