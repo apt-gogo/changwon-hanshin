@@ -78,14 +78,14 @@
     --mobile-hero-copy-size: 16px;      /* '2,016세대 메가스케일, 새로운 주거공간' */
 
     /* HERO 상담버튼 */
-    --mobile-call-label-size: 30px;     /* '모델하우스 방문예약 상담' */
-    --mobile-call-number-size: 50px;    /* '1555-4940' */
+    --mobile-call-label-size: 20px;     /* '모델하우스 방문예약 상담' */
+    --mobile-call-number-size: 40px;    /* '1555-4940' */
     --mobile-call-icon-size: 24px;      /* 전화 아이콘 */
 
     /* HERO 하단 4개 통계 */
     --mobile-hero-stats-bottom: 82px;   /* 숫자↑ = 통계 4개가 위로 올라감 */
-    --mobile-stat-value-size: 20px;     /* 2,016 / 21개동 / 38~136㎡ / 약 1.6대 */
-    --mobile-stat-label-size: 12px;      /* 총 세대수 / 대단지 스케일 등 */
+    --mobile-stat-value-size: 15px;     /* 2,016 / 21개동 / 38~136㎡ / 약 1.6대 */
+    --mobile-stat-label-size: 10px;      /* 총 세대수 / 대단지 스케일 등 */
     --mobile-stat-gap: 6px;             /* 4개 카드 사이 간격 */
 
     /* COMMUNITY 2 x 2 */
