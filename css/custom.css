@@ -1,51 +1,158 @@
 /* ============================================================
    APT-GOGO / 현장별 미세조정 전용 파일
-   ------------------------------------------------------------
-   ★ 자주 바꾸는 크기·간격·색상은 아래 변수만 수정하세요.
-   ★ 기본 기능/레이아웃 코드는 style.css에 두고 이 파일은
-     현장별 미세조정만 담당합니다.
+   ============================================================
+
+   [이 파일의 목적]
+   - style.css  : 기본 디자인/레이아웃 (가급적 수정하지 않음)
+   - custom.css : 현장별 미세조정 (이 파일 위쪽 변수만 수정)
+
+   [가장 자주 하는 수정]
+   1) HERO를 아래로 내림      -> --mobile-hero-top-gap 숫자 ↑
+   2) HERO 제목을 작게        -> --mobile-hero-title-size 숫자 ↓
+   3) 핵심문구를 작게         -> --mobile-hero-copy-size 숫자 ↓
+   4) 4개 통계를 위로 올림    -> --mobile-hero-stats-bottom 숫자 ↑
+   5) 통계 글자를 작게        -> --mobile-stat-value-size 숫자 ↓
+   6) COMMUNITY 사진 간격     -> --mobile-community-gap 숫자 조정
+   7) COMMUNITY 사진 높이     -> --mobile-community-card-height 숫자 조정
+   8) 사진 상단 글자 숨김     -> 해당 --*-scale 숫자 ↑ (사진 확대)
+                                또는 --*-y 값을 조정 (보이는 위치 이동)
+
+   [수정 원칙]
+   - px : 크기/간격. 예) 28px -> 38px = 10px 증가
+   - %  : 사진 안에서 보이는 중심 위치
+   - scale : 1.00 = 원본크기 / 1.20 = 20% 확대
+   - 색상 : #d8a437 같은 값을 변경
+
+   ★ 평소에는 아래의 "A. 직접 수정 영역"만 수정하세요.
+   ★ "B. 연결 코드"는 변수와 화면을 연결하는 부분이므로
+     특별한 이유가 없으면 수정하지 않는 것이 안전합니다.
+   ============================================================ */
+
+
+/* ============================================================
+   A. 직접 수정 영역 - PC / 공통
    ============================================================ */
 :root {
-  /* 공통 페이지 */
-  --page-min-height: 100svh;
-  --page-padding-y: 72px;
+  /* ----------------------------------------------------------
+     PAGE 공통
+     ---------------------------------------------------------- */
+  --page-min-height: 100svh;   /* 한 정보영역의 최소 높이 */
+  --page-padding-y: 72px;      /* 각 PAGE 위/아래 여백 */
 
-  /* HERO 위치 / 간격 */
-  --hero-content-shift-y: -70px;
-  --hero-stats-bottom: 34px;
-  --hero-stats-gap: 46px;
+  /* ----------------------------------------------------------
+     PC HERO
+     ---------------------------------------------------------- */
+  --hero-content-shift-y: -70px; /* 음수↑ = 위로 / 0 = 원위치 / 양수 = 아래로 */
+  --hero-stats-bottom: 34px;     /* 숫자↑ = 4개 통계가 위로 올라감 */
 
-  /* 상담 버튼 */
-  --call-label-size: 20px;
-  --call-number-size: 30px;
-  --call-number-color: #d8a437;
-  --call-icon-size: 28px;
-  --call-line-gap: 2px;
+  /* ----------------------------------------------------------
+     전화 상담버튼 - PC 공통
+     HERO와 CONSULTATION에 함께 적용됨
+     ---------------------------------------------------------- */
+  --call-label-size: 20px;       /* '모델하우스 방문예약 상담' */
+  --call-number-size: 30px;      /* '1555-4940' */
+  --call-number-color: #d8a437;  /* 전화번호 강조색 */
+  --call-icon-size: 28px;        /* 전화 아이콘 크기 */
+  --call-line-gap: 2px;          /* 상담문구 ↔ 전화번호 줄 간격 */
 
-  /* 섹션 공통 */
-  --section-title-size: 42px;
-  --section-content-gap: 24px;
-  --community-card-gap: 14px;
+  /* ----------------------------------------------------------
+     COMMUNITY - PC
+     ---------------------------------------------------------- */
+  --community-card-gap: 14px;    /* 사진 사이 간격 */
 }
 
-/* PAGE 단위 구분: 내용이 많은 화면은 잘리지 않고 자연스럽게 늘어남 */
+
+/* ============================================================
+   A-2. 직접 수정 영역 - 모바일
+   ------------------------------------------------------------
+   여기 값들이 휴대폰 화면 미세조정의 핵심입니다.
+   ============================================================ */
+@media (max-width: 800px) {
+  :root {
+    /* PAGE */
+    --page-padding-y: 54px;
+
+    /* HERO 제목/문구 위치 및 크기 */
+    --mobile-hero-top-gap: 28px;        /* 숫자↑ = HERO 전체가 아래로 내려감 */
+    --mobile-hero-title-size: 43px;     /* '창원 한신더휴 / 메가센텀' */
+    --mobile-hero-copy-size: 16px;      /* '2,016세대 메가스케일, 새로운 주거공간' */
+
+    /* HERO 상담버튼 */
+    --mobile-call-label-size: 15px;     /* '모델하우스 방문예약 상담' */
+    --mobile-call-number-size: 23px;    /* '1555-4940' */
+    --mobile-call-icon-size: 24px;      /* 전화 아이콘 */
+
+    /* HERO 하단 4개 통계 */
+    --mobile-hero-stats-bottom: 82px;   /* 숫자↑ = 통계 4개가 위로 올라감 */
+    --mobile-stat-value-size: 16px;     /* 2,016 / 21개동 / 38~136㎡ / 약 1.6대 */
+    --mobile-stat-label-size: 9px;      /* 총 세대수 / 대단지 스케일 등 */
+    --mobile-stat-gap: 6px;             /* 4개 카드 사이 간격 */
+
+    /* COMMUNITY 2 x 2 */
+    --mobile-community-gap: 10px;       /* 사진 사이 간격 */
+    --mobile-community-card-height: 170px; /* 사진 한 장 높이 */
+    --mobile-community-name-size: 15px; /* 사진 안 시설명 */
+
+    /* --------------------------------------------------------
+       COMMUNITY 사진별 미세조정
+       - scale 숫자↑ = 확대되어 가장자리/상단 글자가 더 잘림
+       - y 숫자 변경 = 사진에서 보여주는 세로 중심 위치 이동
+       -------------------------------------------------------- */
+    --sky-scale: 1.10;
+    --sky-y: 54%;
+
+    --pool-scale: 1.17;
+    --pool-y: 58%;
+
+    --badminton-scale: 1.18;
+    --badminton-y: 60%;
+
+    --kids-scale: 1.16;
+    --kids-y: 58%;
+  }
+}
+
+
+/* ============================================================
+   B. 연결 코드 - 평소 수정하지 마세요
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) PAGE 단위 표시
+   - 내용이 짧으면 화면 한 PAGE 정도 높이를 유지
+   - 내용이 많으면 잘리지 않고 아래로 자연스럽게 늘어남
+   ------------------------------------------------------------ */
 #mc2 .page-section {
   min-height: var(--page-min-height);
   box-sizing: border-box;
   display: flex;
   align-items: center;
 }
-#mc2 .page-section > .wrap { width: min(1180px, calc(100% - 40px)); }
-#mc2 .sec.page-section { padding-top: var(--page-padding-y); padding-bottom: var(--page-padding-y); }
 
-/* HERO = 첫 번째 PAGE. 통계까지 같은 화면 안에 포함 */
+#mc2 .page-section > .wrap {
+  width: min(1180px, calc(100% - 40px));
+}
+
+#mc2 .sec.page-section {
+  padding-top: var(--page-padding-y);
+  padding-bottom: var(--page-padding-y);
+}
+
+
+/* ------------------------------------------------------------
+   2) PC HERO
+   ------------------------------------------------------------ */
 #mc2 .hero {
   min-height: var(--page-min-height);
   box-sizing: border-box;
   position: relative;
   padding-bottom: 150px;
 }
-#mc2 .hero-in { transform: translateY(var(--hero-content-shift-y)); }
+
+#mc2 .hero-in {
+  transform: translateY(var(--hero-content-shift-y));
+}
+
 #mc2 .hero .stats {
   position: absolute;
   z-index: 4;
@@ -55,7 +162,16 @@
   margin-top: 0;
 }
 
-/* HERO / CONSULTATION 전화 CTA 공통 */
+/* PC에서는 긴 카피 사용, 모바일 전용 카피는 숨김 */
+#mc2 .hero-copy-mobile {
+  display: none;
+}
+
+
+/* ------------------------------------------------------------
+   3) 전화 상담 CTA 공통
+   HERO / CONSULTATION 동일 모양 사용
+   ------------------------------------------------------------ */
 #mc2 .call-card {
   display: inline-flex;
   align-items: center;
@@ -63,12 +179,14 @@
   gap: 14px;
   text-decoration: none;
 }
+
 #mc2 .call-card .phone-icon {
   flex: 0 0 auto;
   font-size: var(--call-icon-size);
   line-height: 1;
   color: #e63b78;
 }
+
 #mc2 .call-card .call-text {
   display: flex;
   flex-direction: column;
@@ -76,11 +194,13 @@
   gap: var(--call-line-gap);
   line-height: 1.08;
 }
+
 #mc2 .call-card .call-label {
   color: #082c50;
   font-size: var(--call-label-size);
   font-weight: 900;
 }
+
 #mc2 .call-card .call-number {
   color: var(--call-number-color);
   font-size: var(--call-number-size);
@@ -88,86 +208,7 @@
   letter-spacing: .02em;
 }
 
-/* COMMUNITY: 시설명만 사진 안에 표시 */
-#mc2 .community { gap: var(--community-card-gap); }
-#mc2 .community article > div {
-  padding: 44px 18px 16px;
-  background: linear-gradient(transparent, rgba(0,0,0,.72));
-}
-#mc2 .community article > div span { display: none !important; }
-
-/* CONSULTATION: 제목 없이 상담 CTA를 중심으로 */
-#mc2 .consult.page-section { min-height: 70svh; }
-#mc2 .consult small { margin-bottom: 28px; display: block; }
-
-/* 관심고객등록: 소개/혜택 문구 제거 후 바로 입력폼으로 연결 */
-.res-intro-simple { padding-bottom: 18px !important; }
-.res-intro-simple h1 { margin-bottom: 12px !important; }
-
-@media (max-width: 800px) {
-  :root {
-    --page-padding-y: 54px;
-    --hero-content-shift-y: -92px;
-    --hero-stats-bottom: 28px;
-    --call-label-size: 15px;
-    --call-number-size: 23px;
-    --call-icon-size: 24px;
-    --community-card-gap: 10px;
-  }
-
-  #mc2 .hero {
-    min-height: 100svh;
-    padding-bottom: 190px;
-  }
-  #mc2 .hero .stats {
-    width: calc(100% - 24px);
-    bottom: var(--hero-stats-bottom);
-  }
-  #mc2 .hero-in { transform: translateY(var(--hero-content-shift-y)); }
-
-  #mc2 .call-card { gap: 10px; padding: 12px 18px; }
-  #mc2 .call-card .call-text { align-items: center; }
-
-  #mc2 .page-section {
-    min-height: 100svh;
-    align-items: center;
-  }
-
-  #mc2 .community article > div {
-    display: block !important;
-    padding: 32px 10px 9px;
-  }
-  #mc2 .community article > div b { font-size: 16px; }
-
-  #mc2 .consult.page-section { min-height: 78svh; }
-}
-
-/* ============================================================
-   V6 - 2026-09-13 / 모바일 HERO · COMMUNITY 최종 CM
-   ------------------------------------------------------------
-   [직접 조정 포인트]
-   - 모바일 HERO 상단 위치 : --mobile-hero-top-gap
-   - 모바일 HERO 제목크기  : --mobile-hero-title-size
-   - 모바일 핵심문구 크기  : --mobile-hero-copy-size
-   - 모바일 통계 글자크기  : --mobile-stat-value-size / --mobile-stat-label-size
-   - COMMUNITY 사진간격    : --mobile-community-gap
-   - COMMUNITY 사진높이    : --mobile-community-card-height
-   ============================================================ */
-:root {
-  --mobile-hero-top-gap: 28px;
-  --mobile-hero-title-size: 43px;
-  --mobile-hero-copy-size: 16px;
-  --mobile-hero-stats-bottom: 82px;
-  --mobile-stat-value-size: 16px;
-  --mobile-stat-label-size: 9px;
-  --mobile-community-gap: 10px;
-  --mobile-community-card-height: 170px;
-}
-
-/* 데스크톱에서는 기존 카피를 사용 */
-#mc2 .hero-copy-mobile { display: none; }
-
-/* 공통 전화 아이콘: HERO / CONSULTATION / 모바일 하단 / 등록페이지 동일 심볼 */
+/* 모바일 하단 / 관심고객등록 페이지도 같은 전화 심볼 규칙 */
 #mc2 .mobile .phone-icon,
 #reservationPage .phone-icon {
   display: inline-block;
@@ -176,9 +217,61 @@
   line-height: 1;
 }
 
+
+/* ------------------------------------------------------------
+   4) COMMUNITY 공통
+   - 사진 안에는 시설명만 표시
+   - 부연설명(span)은 항상 숨김
+   ------------------------------------------------------------ */
+#mc2 .community {
+  gap: var(--community-card-gap);
+}
+
+#mc2 .community article > div {
+  padding: 44px 18px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,.72));
+}
+
+#mc2 .community article > div span {
+  display: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   5) CONSULTATION
+   ------------------------------------------------------------ */
+#mc2 .consult.page-section {
+  min-height: 70svh;
+}
+
+#mc2 .consult small {
+  margin-bottom: 28px;
+  display: block;
+}
+
+
+/* ------------------------------------------------------------
+   6) 관심고객등록
+   - 소개/혜택 문구 없이 제목 다음에 바로 입력폼 시작
+   ------------------------------------------------------------ */
+.res-intro-simple {
+  padding-bottom: 18px !important;
+}
+
+.res-intro-simple h1 {
+  margin-bottom: 12px !important;
+}
+
+
+/* ============================================================
+   C. 모바일 연결 코드 - 평소 수정하지 마세요
+   ============================================================ */
 @media (max-width: 800px) {
+
   /* ----------------------------------------------------------
-     HERO : 한 화면 안에 제목 + 핵심문구 + 상담 + 4개 통계
+     1) 모바일 HERO
+     한 화면 안에 아래 순서로 표시
+     제목 → 핵심 한 줄 → 상담버튼 → 4개 통계
      ---------------------------------------------------------- */
   #mc2 .hero {
     min-height: 100svh;
@@ -198,11 +291,13 @@
     margin: 0 0 20px;
   }
 
-  /* PC용 긴 문구/보조문구는 모바일에서 숨기고 한 줄 핵심문구만 표시 */
+  /* 모바일에서는 PC 긴 문구와 보조문구를 숨김 */
   #mc2 .hero-copy-desktop,
   #mc2 .hero-subcopy {
     display: none !important;
   }
+
+  /* 모바일 전용 핵심문구는 한 줄 유지 */
   #mc2 .hero-copy-mobile {
     display: block;
     font-size: var(--mobile-hero-copy-size);
@@ -211,7 +306,10 @@
     letter-spacing: -.04em;
   }
 
-  #mc2 .hero .ctas { margin-top: 20px; }
+  #mc2 .hero .ctas {
+    margin-top: 20px;
+  }
+
   #mc2 .hero .call-card {
     width: min(100%, 360px);
     min-height: 86px;
@@ -220,24 +318,46 @@
     border-radius: 18px;
   }
 
-  /* 4개 정보를 한 줄로 축소하여 HERO 안에 완전히 포함 */
+  /* 모바일 상담버튼 글자크기만 별도 적용 */
+  #mc2 .call-card .call-label {
+    font-size: var(--mobile-call-label-size);
+  }
+
+  #mc2 .call-card .call-number {
+    font-size: var(--mobile-call-number-size);
+  }
+
+  #mc2 .call-card .phone-icon {
+    font-size: var(--mobile-call-icon-size);
+  }
+
+  #mc2 .call-card .call-text {
+    align-items: center;
+  }
+
+  /* ----------------------------------------------------------
+     2) HERO 하단 4개 핵심정보
+     ---------------------------------------------------------- */
   #mc2 .hero .stats {
     width: calc(100% - 20px);
     bottom: var(--mobile-hero-stats-bottom);
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
+    gap: var(--mobile-stat-gap);
   }
+
   #mc2 .hero .stats > div {
     min-width: 0;
     padding: 10px 3px 9px;
     border-radius: 13px;
   }
+
   #mc2 .hero .stats b {
     font-size: var(--mobile-stat-value-size);
     line-height: 1.15;
     white-space: nowrap;
     letter-spacing: -.04em;
   }
+
   #mc2 .hero .stats span {
     margin-top: 4px;
     font-size: var(--mobile-stat-label-size);
@@ -246,42 +366,82 @@
   }
 
   /* ----------------------------------------------------------
-     COMMUNITY : 모바일은 2 x 2, 두 줄(2파트)로 명확히 구분
-     원본 캡처 상단의 글자는 카드 overflow + 확대/위치조정으로 숨김
+     3) 모바일 PAGE
+     ---------------------------------------------------------- */
+  #mc2 .page-section {
+    min-height: 100svh;
+    align-items: center;
+  }
+
+  /* ----------------------------------------------------------
+     4) COMMUNITY = 2열 x 2행
      ---------------------------------------------------------- */
   #mc2 .community {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, var(--mobile-community-card-height));
     gap: var(--mobile-community-gap);
   }
+
+  /* PC에서 크게 쓰는 sky 카드도 모바일에서는 일반 카드와 동일 */
   #mc2 .community .sky {
     grid-column: auto;
     grid-row: auto;
   }
+
   #mc2 .community article {
     min-width: 0;
     height: var(--mobile-community-card-height);
   }
+
+  /* 사진은 카드 밖으로 넘친 부분이 잘리도록 확대 표시 */
   #mc2 .community img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scale(1.10);
     transform-origin: center center;
   }
-  #mc2 .community .sky img { object-position: center 54%; }
-  #mc2 .community .pool img { object-position: center 58%; transform: scale(1.17); }
-  #mc2 .community .badminton img { object-position: center 60%; transform: scale(1.18); }
-  #mc2 .community .kids img { object-position: center 58%; transform: scale(1.16); }
 
+  /* 사진별 확대율/보이는 위치 */
+  #mc2 .community .sky img {
+    object-position: center var(--sky-y);
+    transform: scale(var(--sky-scale));
+  }
+
+  #mc2 .community .pool img {
+    object-position: center var(--pool-y);
+    transform: scale(var(--pool-scale));
+  }
+
+  #mc2 .community .badminton img {
+    object-position: center var(--badminton-y);
+    transform: scale(var(--badminton-scale));
+  }
+
+  #mc2 .community .kids img {
+    object-position: center var(--kids-y);
+    transform: scale(var(--kids-scale));
+  }
+
+  /* 사진 안 시설명만 하단에 표시 */
   #mc2 .community article > div {
+    display: block !important;
     padding: 30px 10px 9px;
   }
+
   #mc2 .community article > div b {
-    font-size: 15px;
+    font-size: var(--mobile-community-name-size);
   }
 
-  /* 모바일 고정 전화 아이콘도 HERO와 같은 전화 심볼 사용 */
-  #mc2 .mobile .phone-icon { color: #fff; font-size: 18px; }
-  #reservationPage .phone-icon { color: #fff; font-size: 18px; }
+  /* ----------------------------------------------------------
+     5) CONSULTATION / 모바일 하단 전화아이콘
+     ---------------------------------------------------------- */
+  #mc2 .consult.page-section {
+    min-height: 78svh;
+  }
+
+  #mc2 .mobile .phone-icon,
+  #reservationPage .phone-icon {
+    color: #fff;
+    font-size: 18px;
+  }
 }

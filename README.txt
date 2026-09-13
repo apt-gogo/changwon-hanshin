@@ -1,81 +1,39 @@
-창원 한신더휴 메가센텀 - 독립 홈페이지 최종본
+APT-GOGO / 창원 한신더휴 메가센텀
+유지보수 안내 (V7)
 
-구조
-- index.html
-- reservation.html
-- css/style.css
-- css/reservation.css
-- js/reservation.js
-- images/
+1. 기본 원칙
+- index.html : 문구/구조 변경 시 수정
+- css/style.css : 기본 디자인 코드. 가급적 수정하지 않음
+- css/custom.css : 크기/간격/위치/색상 등 미세조정 전용
+- images/ : 사진 교체 시 동일 파일명으로 덮어쓰기
 
-메인 홈페이지
-- 상담번호: 1555-4940
-- 모바일 하단 고정바: 전화상담 1555-4940 / 관심고객등록
-- 관심고객등록 버튼은 reservation.html로 이동
+2. 가장 자주 수정할 파일
+[css/custom.css]
+파일 맨 위의 "A. 직접 수정 영역"만 수정하면 됩니다.
+각 변수 바로 옆에 무엇이 바뀌는지 주석으로 설명되어 있습니다.
 
-관심고객 등록 페이지
-- 이름: 필수
-- 휴대폰번호: 필수
-- 방문예약일: 선택
-- 방문예약시간: 선택 (10:00~19:00, 30분 단위)
-- 개인정보 수집 및 이용 동의: 필수
-- 마케팅 정보 수신 동의: 선택
+예)
+--mobile-hero-top-gap: 28px;
+=> 숫자를 크게 하면 HERO 제목/내용이 아래로 내려갑니다.
 
-중요
-- 현재 버전은 등록 화면과 입력 검증까지만 구현되어 있습니다.
-- Supabase 등 서버 DB 저장 기능은 차후 연결 예정입니다.
-- 현재 [등록하기]를 누르면 데이터가 저장되지 않고 안내 메시지만 표시됩니다.
-- UNIT PLAN은 JavaScript 없이 CSS radio 방식으로 동작합니다.
+--mobile-hero-stats-bottom: 82px;
+=> 숫자를 크게 하면 4개 통계가 위로 올라갑니다.
 
-============================================================
-APT-GOGO 유지보수 빠른 안내
-============================================================
-1) 문구 변경
-   - index.html / reservation.html에서 해당 한글 문구만 수정
-   - 자주 수정하는 영역에는 섹션 주석이 있습니다.
+--mobile-community-card-height: 170px;
+=> COMMUNITY 사진 높이를 조정합니다.
 
-2) 글자 크기 / 간격 / 위치 변경
-   - css/custom.css만 수정하세요.
-   - 파일 상단 :root 변수에 HERO 위치, 상담 글자크기, 페이지 여백,
-     COMMUNITY gap 등이 모여 있습니다.
+3. 문구 변경
+[index.html]에서 현재 문구를 검색하여 직접 수정합니다.
+모바일 HERO 핵심문구는 hero-copy-mobile 클래스로 별도 관리됩니다.
 
-3) 사진 변경
-   - images 폴더에서 같은 파일명으로 교체하면 HTML 수정이 필요 없습니다.
-   - 예: hero.png, sky.jpg, pool.jpg, badminton.jpg, kids.jpg
+4. 사진 변경
+같은 파일명으로 images 폴더에서 기존 파일을 교체하면 HTML 수정이 필요 없습니다.
+예: hero.png / sky.jpg / pool.jpg / badminton.jpg / kids.jpg / location.jpg
 
-4) 기본 기능/레이아웃
-   - css/style.css는 특별한 이유가 없으면 수정하지 않습니다.
-   - 현장별 미세조정은 css/custom.css에서 처리합니다.
+5. GitHub에서 직접 수정
+파일 선택 -> 연필(Edit this file) -> 수정 -> Commit changes
+잠시 후 GitHub Pages 홈페이지에 자동 반영됩니다.
 
-5) 고객정보 저장
-   - 현재 미연결 상태입니다. 별도 CM 후 구현합니다.
-
-============================================================
-V6 유지보수 구조 (사용자 직접 미세조정)
-============================================================
-1) 글자/문구 수정
-   - index.html에서 해당 문구만 직접 변경
-   - 모바일 HERO 핵심문구는 class="hero-copy-mobile"
-   - PC HERO 문구는 class="hero-copy-desktop", 보조문구는 hero-subcopy
-
-2) 크기/간격/위치 수정
-   - css/custom.css 맨 아래 V6 변수만 수정
-   - --mobile-hero-top-gap        : 모바일 HERO 제목 상단 여백
-   - --mobile-hero-title-size     : 모바일 HERO 제목 크기
-   - --mobile-hero-copy-size      : 모바일 HERO 한 줄 핵심문구 크기
-   - --mobile-hero-stats-bottom   : 모바일 4개 통계의 하단 위치
-   - --mobile-stat-value-size     : 통계 숫자 크기
-   - --mobile-stat-label-size     : 통계 설명 크기
-   - --mobile-community-gap       : 커뮤니티 사진 사이 간격
-   - --mobile-community-card-height : 커뮤니티 사진 높이
-
-3) 사진 교체
-   - images 폴더에서 같은 파일명으로 덮어쓰기
-   - hero.png / sky.jpg / pool.jpg / badminton.jpg / kids.jpg 등
-   - HTML/CSS 수정 없이 반영 가능
-
-4) 중요 원칙
-   - style.css : 기본 레이아웃/기능. 가급적 수정하지 않음
-   - custom.css : 현장별 미세조정. 사용자가 주로 수정하는 파일
-   - index.html : 문구나 이미지 파일명 변경시에만 수정
-============================================================
+6. 고객정보 저장
+현재 관심고객등록 화면은 UI까지만 구성되어 있습니다.
+실제 고객정보 저장/조회 방식은 별도 CM 후 구현합니다.
