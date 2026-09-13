@@ -1,0 +1,143 @@
+/* ============================================================
+   APT-GOGO / 현장별 미세조정 전용 파일
+   ------------------------------------------------------------
+   ★ 자주 바꾸는 크기·간격·색상은 아래 변수만 수정하세요.
+   ★ 기본 기능/레이아웃 코드는 style.css에 두고 이 파일은
+     현장별 미세조정만 담당합니다.
+   ============================================================ */
+:root {
+  /* 공통 페이지 */
+  --page-min-height: 100svh;
+  --page-padding-y: 72px;
+
+  /* HERO 위치 / 간격 */
+  --hero-content-shift-y: -70px;
+  --hero-stats-bottom: 34px;
+  --hero-stats-gap: 46px;
+
+  /* 상담 버튼 */
+  --call-label-size: 20px;
+  --call-number-size: 30px;
+  --call-number-color: #d8a437;
+  --call-icon-size: 28px;
+  --call-line-gap: 2px;
+
+  /* 섹션 공통 */
+  --section-title-size: 42px;
+  --section-content-gap: 24px;
+  --community-card-gap: 14px;
+}
+
+/* PAGE 단위 구분: 내용이 많은 화면은 잘리지 않고 자연스럽게 늘어남 */
+#mc2 .page-section {
+  min-height: var(--page-min-height);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+#mc2 .page-section > .wrap { width: min(1180px, calc(100% - 40px)); }
+#mc2 .sec.page-section { padding-top: var(--page-padding-y); padding-bottom: var(--page-padding-y); }
+
+/* HERO = 첫 번째 PAGE. 통계까지 같은 화면 안에 포함 */
+#mc2 .hero {
+  min-height: var(--page-min-height);
+  box-sizing: border-box;
+  position: relative;
+  padding-bottom: 150px;
+}
+#mc2 .hero-in { transform: translateY(var(--hero-content-shift-y)); }
+#mc2 .hero .stats {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  bottom: var(--hero-stats-bottom);
+  transform: translateX(-50%);
+  margin-top: 0;
+}
+
+/* HERO / CONSULTATION 전화 CTA 공통 */
+#mc2 .call-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-decoration: none;
+}
+#mc2 .call-card .phone-icon {
+  flex: 0 0 auto;
+  font-size: var(--call-icon-size);
+  line-height: 1;
+  color: #e63b78;
+}
+#mc2 .call-card .call-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--call-line-gap);
+  line-height: 1.08;
+}
+#mc2 .call-card .call-label {
+  color: #082c50;
+  font-size: var(--call-label-size);
+  font-weight: 900;
+}
+#mc2 .call-card .call-number {
+  color: var(--call-number-color);
+  font-size: var(--call-number-size);
+  font-weight: 1000;
+  letter-spacing: .02em;
+}
+
+/* COMMUNITY: 시설명만 사진 안에 표시 */
+#mc2 .community { gap: var(--community-card-gap); }
+#mc2 .community article > div {
+  padding: 44px 18px 16px;
+  background: linear-gradient(transparent, rgba(0,0,0,.72));
+}
+#mc2 .community article > div span { display: none !important; }
+
+/* CONSULTATION: 제목 없이 상담 CTA를 중심으로 */
+#mc2 .consult.page-section { min-height: 70svh; }
+#mc2 .consult small { margin-bottom: 28px; display: block; }
+
+/* 관심고객등록: 소개/혜택 문구 제거 후 바로 입력폼으로 연결 */
+.res-intro-simple { padding-bottom: 18px !important; }
+.res-intro-simple h1 { margin-bottom: 12px !important; }
+
+@media (max-width: 800px) {
+  :root {
+    --page-padding-y: 54px;
+    --hero-content-shift-y: -92px;
+    --hero-stats-bottom: 28px;
+    --call-label-size: 15px;
+    --call-number-size: 23px;
+    --call-icon-size: 24px;
+    --community-card-gap: 10px;
+  }
+
+  #mc2 .hero {
+    min-height: 100svh;
+    padding-bottom: 190px;
+  }
+  #mc2 .hero .stats {
+    width: calc(100% - 24px);
+    bottom: var(--hero-stats-bottom);
+  }
+  #mc2 .hero-in { transform: translateY(var(--hero-content-shift-y)); }
+
+  #mc2 .call-card { gap: 10px; padding: 12px 18px; }
+  #mc2 .call-card .call-text { align-items: center; }
+
+  #mc2 .page-section {
+    min-height: 100svh;
+    align-items: center;
+  }
+
+  #mc2 .community article > div {
+    display: block !important;
+    padding: 32px 10px 9px;
+  }
+  #mc2 .community article > div b { font-size: 16px; }
+
+  #mc2 .consult.page-section { min-height: 78svh; }
+}

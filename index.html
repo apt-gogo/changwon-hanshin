@@ -6,6 +6,7 @@
   <meta name="description" content="창원 한신더휴 메가센텀 분양 안내">
   <title>창원 한신더휴 메가센텀</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
 <div id="mc2" data-phone="1555-4940">
@@ -30,11 +31,12 @@
       </p>
 
       <div class="ctas">
-        <a class="call hero-call" href="tel:1555-4940">📞 모델하우스 방문예약 상담 1555-4940</a>
+        <a class="call hero-call call-card" href="tel:1555-4940" aria-label="모델하우스 방문예약 상담 1555-4940">
+          <span class="phone-icon" aria-hidden="true">☎</span>
+          <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number">1555-4940</strong></span>
+        </a>
       </div>
     </div>
-    
-  </section>
 
   <!-- =========================================================
        02. QUICK STATS
@@ -45,11 +47,13 @@
     <div><b>38~136㎡</b><span>다양한 주거타입</span></div>
     <div><b>약 1.6대</b><span>세대당 주차</span></div>
   </div>
+  </section>
+
 
   <!-- =========================================================
        03. MEGA LIVING / 단지정보
        ========================================================= -->
-  <section id="site" class="sec">
+  <section id="site" class="sec page-section">
     <div class="wrap">
       <div class="k">MEGA LIVING</div>
       <h2>2,016세대가 만드는<br><em>생활의 스케일</em></h2>
@@ -71,7 +75,7 @@
        07. UNIT PLAN
        ※ 각 변수 슬롯에 같은 이름의 평면 이미지를 등록합니다.
        ========================================================= -->
-  <section class="sec">
+  <section class="sec page-section">
     <div class="wrap">
       <div class="k">UNIT PLAN</div>
       <h2>우리 가족에게 맞는<br><em>공간을 찾아보세요</em></h2>
@@ -126,10 +130,10 @@
   <!-- =========================================================
        04. COMMUNITY
        ========================================================= -->
-  <section class="sec dark">
+  <section class="sec dark page-section">
     <div class="wrap">
       <div class="k">MEGA COMMUNITY</div>
-      <h2>집 가까이에서 누리는<br><em>특별한 일상</em></h2>
+      <h2>단지 안에서 누리는<br><em>특별한 일상</em></h2>
       <p class="lead">운동과 휴식, 아이들의 활동까지 단지 안에서 누리는 다채로운 커뮤니티 라이프</p>
 
       <div class="community">
@@ -137,7 +141,6 @@
           <img src="images/sky.jpg" alt="스카이라운지">
           <div>
             <b>스카이라운지</b>
-            <span>도심의 풍경을 여유롭게 누리는 특별한 공간</span>
           </div>
         </article>
 
@@ -145,7 +148,6 @@
           <img src="images/pool.jpg" alt="실내수영장">
           <div>
             <b>실내수영장</b>
-            <span>계절과 날씨에 관계없이 즐기는 여유로운 수영</span>
           </div>
         </article>
 
@@ -153,7 +155,6 @@
           <img src="images/badminton.jpg" alt="실내배드민턴장">
           <div>
             <b>실내배드민턴장</b>
-            <span>날씨 걱정 없이 즐기는 활기찬 실내 스포츠</span>
           </div>
         </article>
 
@@ -161,7 +162,6 @@
           <img src="images/kids.jpg" alt="키즈체육관">
           <div>
             <b>키즈체육관</b>
-            <span>아이들이 마음껏 뛰어놀 수 있는 활동 공간</span>
           </div>
         </article>
       </div>
@@ -171,7 +171,7 @@
   <!-- =========================================================
        05. SPECIAL PLAN
        ========================================================= -->
-  <section class="sec">
+  <section class="sec page-section">
     <div class="wrap">
       <div class="k">SPECIAL PLAN</div>
       <h2>살수록 느끼는<br><em>주거의 디테일</em></h2>
@@ -211,7 +211,7 @@
   <!-- =========================================================
        06. LOCATION VALUE
        ========================================================= -->
-  <section class="sec location">
+  <section class="sec location page-section">
     <div class="wrap">
       <div class="k">LOCATION VALUE</div>
       <h2>아파트가 좋은데,<br><em>주변까지 좋습니다</em></h2>
@@ -226,13 +226,14 @@
        08. CONSULTATION
        담당자명/전화번호는 변수 2개만 수정하면 전체에 일괄 반영됩니다.
        ========================================================= -->
-  <section class="consult">
+  <section class="consult page-section">
     <div class="wrap">
       <small>CONSULTATION</small>
-      <h2>궁금한 점은<br>담당자에게 바로 문의하세요</h2>
-
       <div class="ctas center">
-        <a class="call consult-call" href="tel:1555-4940">📞 모델하우스 방문예약 상담 1555-4940</a>
+        <a class="call consult-call call-card" href="tel:1555-4940" aria-label="모델하우스 방문예약 상담 1555-4940">
+          <span class="phone-icon" aria-hidden="true">☎</span>
+          <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number">1555-4940</strong></span>
+        </a>
       </div>
 
       <div class="notice notice-in-consult">
@@ -245,7 +246,7 @@
 
   <!-- 모바일 고정 액션바 -->
   <nav class="mobile" aria-label="모바일 빠른 메뉴">
-    <a class="mobile-call" href="tel:1555-4940">☎ 전화상담 1555-4940</a>
+    <a class="mobile-call" href="tel:1555-4940"><span class="phone-icon" aria-hidden="true">☎</span> 전화상담 1555-4940</a>
     <a class="mobile-register" href="reservation.html">👤 관심고객등록</a>
   </nav>
 
