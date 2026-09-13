@@ -70,7 +70,7 @@
             </label>
             <details>
               <summary>내용보기</summary>
-              <p>관심고객 등록 및 상담을 위해 이름, 휴대폰번호, 선택한 방문예약 정보를 수집하는 화면입니다. 실제 데이터 저장 기능은 추후 연결됩니다.</p>
+              <p>관심고객 등록 및 상담을 위해 이름, 휴대폰번호, 선택한 방문예약 정보를 수집합니다. 수집된 정보는 분양 상담 및 방문예약 안내 목적으로 이용됩니다.</p>
             </details>
           </div>
 
@@ -86,7 +86,7 @@
           </div>
 
           <button class="res-submit" type="submit">등록하기</button>
-          <p class="res-ready">※ 현재는 화면 구성 단계이며 온라인 데이터 저장 기능은 추후 연결됩니다.</p>
+          <p id="registrationStatus" class="res-status" role="status" aria-live="polite"></p>
         </form>
       </div>
     </section>
@@ -97,6 +97,8 @@
     <a class="res-action-register" href="reservation.html">👤 관심고객등록</a>
   </nav>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabase-config.js"></script>
 <script src="js/reservation.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>관리자 로그인 | APT-GOGO</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <main class="login-shell">
+    <section class="login-card">
+      <p class="admin-eyebrow">APT-GOGO ADMIN</p>
+      <h1>관심고객 관리</h1>
+      <p class="login-help">등록된 관심고객 정보를 확인하려면 관리자 계정으로 로그인하세요.</p>
+
+      <form id="adminLoginForm" class="admin-form">
+        <label>
+          <span>이메일</span>
+          <input id="adminEmail" type="email" autocomplete="username" required>
+        </label>
+        <label>
+          <span>비밀번호</span>
+          <input id="adminPassword" type="password" autocomplete="current-password" required>
+        </label>
+        <button id="loginButton" type="submit">로그인</button>
+        <p id="loginStatus" class="admin-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

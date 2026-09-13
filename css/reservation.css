@@ -168,3 +168,16 @@ body.reservation-body {
   .res-action-call { background: var(--res-navy); }
   .res-action-register { background: var(--res-gold); }
 }
+
+/* 관심고객 등록 결과 메시지 */
+.res-status {
+  min-height: 24px;
+  margin: -12px 0 0;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+.res-status.success { color: #0b6b47; }
+.res-status.error { color: #c43c3c; }
+.res-submit:disabled { opacity: .65; cursor: wait; }

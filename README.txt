@@ -34,6 +34,9 @@ APT-GOGO / 창원 한신더휴 메가센텀
 파일 선택 -> 연필(Edit this file) -> 수정 -> Commit changes
 잠시 후 GitHub Pages 홈페이지에 자동 반영됩니다.
 
-6. 고객정보 저장
-현재 관심고객등록 화면은 UI까지만 구성되어 있습니다.
-실제 고객정보 저장/조회 방식은 별도 CM 후 구현합니다.
+6. 고객정보 저장 / 관리자 조회
+V8부터 Supabase 연동 구조가 추가되었습니다.
+상세 설치순서는 README_SUPABASE.txt를 확인하세요.
+
+- 고객: reservation.html에서 관심고객 등록
+- 관리자: /admin/에서 로그인 후 관심고객 조회

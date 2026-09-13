@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>관심고객 조회 | APT-GOGO</title>
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <div>
+      <p class="admin-eyebrow">APT-GOGO ADMIN</p>
+      <h1>관심고객 조회</h1>
+    </div>
+    <div class="admin-user-box">
+      <span id="loginUser"></span>
+      <button id="logoutButton" type="button" class="secondary-button">로그아웃</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <section class="filter-card">
+      <div class="filter-grid">
+        <label>
+          <span>분양현장</span>
+          <select id="siteFilter"><option value="">전체</option></select>
+        </label>
+        <label>
+          <span>등록일 From</span>
+          <input id="dateFrom" type="date">
+        </label>
+        <label>
+          <span>등록일 To</span>
+          <input id="dateTo" type="date">
+        </label>
+        <label>
+          <span>고객명</span>
+          <input id="nameFilter" type="text" placeholder="고객명">
+        </label>
+        <label>
+          <span>전화번호</span>
+          <input id="mobileFilter" type="text" inputmode="numeric" placeholder="01012345678">
+        </label>
+        <button id="searchButton" class="primary-button" type="button">조회</button>
+      </div>
+    </section>
+
+    <section class="summary-row" aria-label="조회 요약">
+      <div><span>조회건수</span><b id="resultCount">0</b></div>
+      <div><span>방문예약</span><b id="reservedCount">0</b></div>
+      <button id="refreshButton" class="secondary-button" type="button">새로고침</button>
+    </section>
+
+    <section class="table-card">
+      <div class="table-scroll">
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>등록일시</th>
+              <th>분양현장</th>
+              <th>고객명</th>
+              <th>전화번호</th>
+              <th>방문예약일</th>
+              <th>예약시간</th>
+              <th>마케팅동의</th>
+              <th>유입경로</th>
+            </tr>
+          </thead>
+          <tbody id="customerRows">
+            <tr><td colspan="8" class="empty-cell">조회 중...</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p id="queryStatus" class="admin-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/customers.js"></script>
+</body>
+</html>
