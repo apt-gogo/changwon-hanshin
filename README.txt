@@ -49,3 +49,33 @@ APT-GOGO 유지보수 빠른 안내
 
 5) 고객정보 저장
    - 현재 미연결 상태입니다. 별도 CM 후 구현합니다.
+
+============================================================
+V6 유지보수 구조 (사용자 직접 미세조정)
+============================================================
+1) 글자/문구 수정
+   - index.html에서 해당 문구만 직접 변경
+   - 모바일 HERO 핵심문구는 class="hero-copy-mobile"
+   - PC HERO 문구는 class="hero-copy-desktop", 보조문구는 hero-subcopy
+
+2) 크기/간격/위치 수정
+   - css/custom.css 맨 아래 V6 변수만 수정
+   - --mobile-hero-top-gap        : 모바일 HERO 제목 상단 여백
+   - --mobile-hero-title-size     : 모바일 HERO 제목 크기
+   - --mobile-hero-copy-size      : 모바일 HERO 한 줄 핵심문구 크기
+   - --mobile-hero-stats-bottom   : 모바일 4개 통계의 하단 위치
+   - --mobile-stat-value-size     : 통계 숫자 크기
+   - --mobile-stat-label-size     : 통계 설명 크기
+   - --mobile-community-gap       : 커뮤니티 사진 사이 간격
+   - --mobile-community-card-height : 커뮤니티 사진 높이
+
+3) 사진 교체
+   - images 폴더에서 같은 파일명으로 덮어쓰기
+   - hero.png / sky.jpg / pool.jpg / badminton.jpg / kids.jpg 등
+   - HTML/CSS 수정 없이 반영 가능
+
+4) 중요 원칙
+   - style.css : 기본 레이아웃/기능. 가급적 수정하지 않음
+   - custom.css : 현장별 미세조정. 사용자가 주로 수정하는 파일
+   - index.html : 문구나 이미지 파일명 변경시에만 수정
+============================================================
