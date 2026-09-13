@@ -48,7 +48,7 @@
     const { data, error } = await client
       .from('md_apt_site')
       .select('id')
-      .eq('site_code', APT_GOGO_SITE_CODE)
+      .eq('site_code', SITE_CONFIG.site.code)
       .eq('active_yn', 'Y')
       .single();
 
@@ -57,18 +57,20 @@
     return aptSiteId;
   }
 
-  /* 방문시간 10:00 ~ 19:00 / 30분 단위 생성 */
+  /* 방문시간은 SITE_CONFIG 기준으로 생성 */
   if (time) {
-    for (let h = 10; h <= 19; h += 1) {
-      for (const m of [0, 30]) {
-        if (h === 19 && m === 30) continue;
-        const hh = String(h).padStart(2, '0');
-        const mm = String(m).padStart(2, '0');
-        const option = document.createElement('option');
-        option.value = `${hh}:${mm}`;
-        option.textContent = `${hh}:${mm}`;
-        time.appendChild(option);
-      }
+    const [startHour, startMinute] = SITE_CONFIG.reservation.startTime.split(':').map(Number);
+    const [endHour, endMinute] = SITE_CONFIG.reservation.endTime.split(':').map(Number);
+    const startTotal = startHour * 60 + startMinute;
+    const endTotal = endHour * 60 + endMinute;
+
+    for (let total = startTotal; total <= endTotal; total += SITE_CONFIG.reservation.intervalMinutes) {
+      const hh = String(Math.floor(total / 60)).padStart(2, '0');
+      const mm = String(total % 60).padStart(2, '0');
+      const option = document.createElement('option');
+      option.value = `${hh}:${mm}`;
+      option.textContent = `${hh}:${mm}`;
+      time.appendChild(option);
     }
   }
 
@@ -116,7 +118,7 @@
     }
 
     if (!isSupabaseConfigReady()) {
-      setStatus('현재 온라인 등록 연결 준비 중입니다. 전화상담 1555-4940을 이용해 주세요.', 'error');
+      setStatus(`현재 온라인 등록 연결 준비 중입니다. 전화상담 ${SITE_CONFIG.contact.phoneDisplay}을 이용해 주세요.`, 'error');
       return;
     }
 
@@ -134,11 +136,9 @@
         customer_message: customerMessage,
         privacy_agree_yn: 'Y',
         marketing_agree_yn: marketingAgree ? 'Y' : 'N',
-        source_channel: 'HOMEPAGE',
-        source_detail: APT_GOGO_SITE_CODE
+        source_channel: SITE_CONFIG.customer.sourceChannel,
+        source_detail: SITE_CONFIG.site.code
       };
-	
-      alert("메시지=[" + customerMessage + "]");
 
       const { error } = await client
         .from('trn_apt_customer')
@@ -158,8 +158,8 @@
 
     /* 등록 완료 후 2초 뒤 메인 홈페이지로 자동 복귀 */
     setTimeout(() => {
-    window.location.replace('https://apt-gogo.github.io/changwon-hanshin/');
-    }, 2000);	
+    window.location.replace(SITE_CONFIG.site.homepageUrl);
+    }, SITE_CONFIG.reservation.successRedirectDelayMs);	
 
     } catch (error) {
       console.error('관심고객 등록 오류:', error);
