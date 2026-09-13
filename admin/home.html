@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>관리자 홈 | APT-GOGO</title>
+  <link rel="stylesheet" href="css/admin.css?v=20260913-1">
+</head>
+<body class="admin-body">
+  <main class="admin-home-shell">
+    <section class="admin-home-card">
+      <div class="admin-home-top">
+        <div>
+          <p class="admin-eyebrow">APT-GOGO ADMIN</p>
+          <h1>창원 한신더휴<br>메가센텀</h1>
+          <p class="admin-home-help">관리자 메뉴를 선택하세요.</p>
+        </div>
+
+        <div class="admin-home-user">
+          <span id="loginUser"></span>
+          <button id="logoutButton" type="button" class="secondary-button">로그아웃</button>
+        </div>
+      </div>
+
+      <nav class="admin-home-menu" aria-label="관리자 메뉴">
+        <a class="admin-menu-button admin-menu-homepage" href="../index.html">
+          <span class="admin-menu-icon" aria-hidden="true">⌂</span>
+          <span>
+            <strong>홈페이지 보기</strong>
+            <small>고객이 보는 분양 홈페이지로 이동</small>
+          </span>
+        </a>
+
+        <a class="admin-menu-button admin-menu-customers" href="customers.html">
+          <span class="admin-menu-icon" aria-hidden="true">☏</span>
+          <span>
+            <strong>등록고객 조회</strong>
+            <small>오늘 등록된 관심고객 확인</small>
+          </span>
+        </a>
+      </nav>
+
+      <p id="homeStatus" class="admin-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script src="js/home.js?v=20260913-1"></script>
+</body>
+</html>

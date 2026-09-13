@@ -1,4 +1,9 @@
-/* 관리자 로그인: Supabase Auth 이메일/비밀번호 사용 */
+/* ============================================================
+   관리자 로그인
+   ------------------------------------------------------------
+   - Supabase Auth 이메일/비밀번호 로그인
+   - 로그인 성공 후 관리자 시작화면(home.html)으로 이동
+   ============================================================ */
 (() => {
   const form = document.getElementById('adminLoginForm');
   const button = document.getElementById('loginButton');
@@ -17,12 +22,14 @@
 
   const client = createAptGogoSupabaseClient();
 
+  /* 이미 로그인된 상태라면 로그인 화면을 거치지 않고 시작화면으로 이동 */
   client.auth.getSession().then(({ data }) => {
-    if (data.session) location.href = 'customers.html';
+    if (data.session) location.href = 'home.html';
   });
 
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
+
     setStatus('');
     button.disabled = true;
     button.textContent = '로그인 중...';
@@ -40,6 +47,6 @@
       return;
     }
 
-    location.href = 'customers.html';
+    location.href = 'home.html';
   });
 })();
