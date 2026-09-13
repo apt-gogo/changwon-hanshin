@@ -23,10 +23,6 @@
     <section class="filter-card">
       <div class="filter-grid">
         <label>
-          <span>분양현장</span>
-          <select id="siteFilter"><option value="">전체</option></select>
-        </label>
-        <label>
           <span>등록일 From</span>
           <input id="dateFrom" type="date">
         </label>
@@ -63,21 +59,26 @@
               <th>전화번호</th>
               <th>방문예약일</th>
               <th>예약시간</th>
+              <th>남기실 말씀</th>
               <th>마케팅동의</th>
               <th>유입경로</th>
             </tr>
           </thead>
           <tbody id="customerRows">
-            <tr><td colspan="8" class="empty-cell">조회 중...</td></tr>
+            <tr><td colspan="9" class="empty-cell">조회 중...</td></tr>
           </tbody>
         </table>
       </div>
+
+      <!-- 모바일 전용: 상담에 필요한 핵심정보만 카드형으로 표시 -->
+      <div id="mobileCustomerCards" class="mobile-customer-list" aria-label="모바일 관심고객 목록"></div>
+
       <p id="queryStatus" class="admin-status" role="status" aria-live="polite"></p>
     </section>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../js/supabase-config.js"></script>
-  <script src="js/customers.js"></script>
+  <script src="js/customers.js?v=20260913-1"></script>
 </body>
 </html>

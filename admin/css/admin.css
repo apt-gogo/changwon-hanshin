@@ -38,7 +38,7 @@ button { cursor: pointer; }
 .admin-main { width: min(1260px, calc(100% - 40px)); margin: 26px auto 60px; }
 .filter-card, .table-card { background: #fff; border: 1px solid var(--admin-line); border-radius: 16px; box-shadow: 0 8px 28px rgba(27,44,59,.05); }
 .filter-card { padding: 22px; }
-.filter-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr) auto; gap: 14px; align-items: end; }
+.filter-grid { display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 14px; align-items: end; }
 .filter-grid label { display: grid; gap: 7px; }
 .filter-grid label span { font-size: 13px; font-weight: 800; color: #586573; }
 .filter-grid input, .filter-grid select { width: 100%; min-height: 44px; padding: 0 11px; border: 1px solid var(--admin-line); border-radius: 9px; background: #fff; }
@@ -52,12 +52,23 @@ button { cursor: pointer; }
 .summary-row .secondary-button { margin-left: auto; }
 .table-card { overflow: hidden; }
 .table-scroll { overflow-x: auto; }
-.customer-table { width: 100%; min-width: 920px; border-collapse: collapse; }
+.customer-table { width: 100%; min-width: 1080px; border-collapse: collapse; }
 .customer-table th { padding: 13px 12px; background: #f8fafb; border-bottom: 1px solid var(--admin-line); color: #5c6874; font-size: 12px; text-align: left; white-space: nowrap; }
 .customer-table td { padding: 14px 12px; border-bottom: 1px solid #edf0f2; font-size: 14px; white-space: nowrap; }
 .customer-table tbody tr:hover { background: #fbfcfd; }
 .customer-name { font-weight: 900; }
 .phone-link { color: var(--admin-blue); font-weight: 900; text-decoration: none; }
+.customer-message { min-width: 220px; max-width: 360px; white-space: normal !important; line-height: 1.45; }
+
+/* 모바일 관심고객 카드: PC에서는 숨김 */
+.mobile-customer-list { display: none; }
+.mobile-customer-card { padding: 16px 4px; border-bottom: 1px solid #edf0f2; }
+.mobile-customer-card:last-child { border-bottom: 0; }
+.mobile-visit { margin-bottom: 7px; color: var(--admin-navy); font-size: 16px; font-weight: 900; }
+.mobile-person { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; font-size: 16px; }
+.mobile-person strong { color: var(--admin-text); }
+.mobile-message { color: #586573; font-size: 14px; line-height: 1.55; overflow-wrap: anywhere; }
+.mobile-empty { padding: 36px 16px; text-align: center; color: var(--admin-muted); }
 .empty-cell { padding: 40px !important; text-align: center; color: var(--admin-muted); }
 .admin-status { min-height: 20px; margin: 14px 0 0; color: var(--admin-muted); text-align: center; font-size: 13px; font-weight: 800; }
 .admin-status.error { color: #c43c3c; }
@@ -70,7 +81,6 @@ button { cursor: pointer; }
   .admin-user-box { flex-direction: column; align-items: flex-end; gap: 8px; }
   .admin-main { width: calc(100% - 24px); margin-top: 14px; }
   .filter-grid { grid-template-columns: 1fr 1fr; }
-  .filter-grid label:first-child { grid-column: 1 / -1; }
   .filter-grid .primary-button { grid-column: 1 / -1; }
   .summary-row { flex-wrap: wrap; }
   .summary-row .secondary-button { margin-left: 0; }
@@ -79,7 +89,11 @@ button { cursor: pointer; }
 @media (max-width: 520px) {
   .login-card { padding: 32px 22px; }
   .filter-grid { grid-template-columns: 1fr; }
-  .filter-grid label:first-child, .filter-grid .primary-button { grid-column: auto; }
+  .filter-grid .primary-button { grid-column: auto; }
   .admin-header { flex-direction: column; }
   .admin-user-box { width: 100%; flex-direction: row; justify-content: space-between; align-items: center; }
+
+  /* 모바일에서는 가로 스크롤 표 대신 핵심정보 카드만 표시 */
+  .table-scroll { display: none; }
+  .mobile-customer-list { display: block; padding: 0 16px; }
 }
