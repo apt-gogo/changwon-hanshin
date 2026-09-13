@@ -14,8 +14,8 @@
 
   const client = createAptGogoSupabaseClient();
   const rows = document.getElementById('customerRows');
+  const mobileCards = document.getElementById('mobileCustomerCards');
   const status = document.getElementById('queryStatus');
-  const siteFilter = document.getElementById('siteFilter');
 
   function escapeHtml(value) {
     return String(value ?? '')
@@ -65,45 +65,28 @@
     return data.session;
   }
 
-  async function loadSites() {
-    const { data, error } = await client
-      .from('md_apt_site')
-      .select('id, site_name, site_code, active_yn')
-      .order('site_name');
-
-    if (error) throw error;
-
-    siteFilter.innerHTML = '<option value="">전체</option>';
-    data.forEach(site => {
-      const option = document.createElement('option');
-      option.value = site.id;
-      option.textContent = `${site.site_name}${site.active_yn === 'N' ? ' (종료)' : ''}`;
-      siteFilter.appendChild(option);
-    });
-  }
-
   async function loadCustomers() {
-    rows.innerHTML = '<tr><td colspan="8" class="empty-cell">조회 중...</td></tr>';
+    rows.innerHTML = '<tr><td colspan="9" class="empty-cell">조회 중...</td></tr>';
+    mobileCards.innerHTML = '<div class="mobile-empty">조회 중...</div>';
     setStatus('');
 
     let query = client
       .from('trn_apt_customer')
       .select(`
         id, created_at, apt_site_id, customer_name, mobile_no,
-        visit_date, visit_time, marketing_agree_yn, source_channel,
+        visit_date, visit_time, customer_message,
+        marketing_agree_yn, source_channel,
         md_apt_site ( site_name, site_code )
       `)
       .eq('active_yn', 'Y')
       .order('created_at', { ascending: false })
       .limit(500);
 
-    const siteId = siteFilter.value;
     const dateFrom = document.getElementById('dateFrom').value;
     const dateTo = document.getElementById('dateTo').value;
     const customerName = document.getElementById('nameFilter').value.trim();
     const mobileNo = document.getElementById('mobileFilter').value.replace(/\D/g, '');
 
-    if (siteId) query = query.eq('apt_site_id', siteId);
     if (dateFrom) query = query.gte('created_at', localDayStartIso(dateFrom));
     if (dateTo) query = query.lte('created_at', localDayEndIso(dateTo));
     if (customerName) query = query.ilike('customer_name', `%${customerName}%`);
@@ -116,7 +99,8 @@
     document.getElementById('reservedCount').textContent = data.filter(x => x.visit_date).length.toLocaleString('ko-KR');
 
     if (!data.length) {
-      rows.innerHTML = '<tr><td colspan="8" class="empty-cell">조회된 관심고객이 없습니다.</td></tr>';
+      rows.innerHTML = '<tr><td colspan="9" class="empty-cell">조회된 관심고객이 없습니다.</td></tr>';
+      mobileCards.innerHTML = '<div class="mobile-empty">조회된 관심고객이 없습니다.</div>';
       return;
     }
 
@@ -128,10 +112,34 @@
         <td><a class="phone-link" href="tel:${escapeHtml(item.mobile_no)}">${escapeHtml(formatMobile(item.mobile_no))}</a></td>
         <td>${escapeHtml(item.visit_date || '-')}</td>
         <td>${escapeHtml(item.visit_time ? item.visit_time.slice(0,5) : '-')}</td>
+        <td class="customer-message">${escapeHtml(item.customer_message || '-')}</td>
         <td>${item.marketing_agree_yn === 'Y' ? '동의' : '미동의'}</td>
         <td>${escapeHtml(item.source_channel || '-')}</td>
       </tr>
     `).join('');
+
+    /* 모바일: 날짜/시간 → 이름/전화번호 → 고객 메시지 순으로 단순 표시 */
+    mobileCards.innerHTML = data.map(item => {
+      const visitDate = item.visit_date
+        ? item.visit_date.slice(5).replace('-', '/')
+        : '예약일 미정';
+      const visitTime = item.visit_time
+        ? item.visit_time.slice(0, 5)
+        : '';
+      const message = item.customer_message || '남긴 메시지 없음';
+
+      return `
+        <article class="mobile-customer-card">
+          <div class="mobile-visit">${escapeHtml(visitDate)}${visitTime ? ` ${escapeHtml(visitTime)}` : ''}</div>
+          <div class="mobile-person">
+            <strong>${escapeHtml(item.customer_name)}</strong>
+            <span>·</span>
+            <a class="phone-link" href="tel:${escapeHtml(item.mobile_no)}">${escapeHtml(formatMobile(item.mobile_no))}</a>
+          </div>
+          <div class="mobile-message">“${escapeHtml(message)}”</div>
+        </article>
+      `;
+    }).join('');
   }
 
   document.getElementById('searchButton').addEventListener('click', () => {
@@ -162,11 +170,11 @@
     if (!session) return;
 
     try {
-      await loadSites();
       await loadCustomers();
     } catch (error) {
       console.error(error);
-      rows.innerHTML = '<tr><td colspan="8" class="empty-cell">데이터를 불러오지 못했습니다.</td></tr>';
+      rows.innerHTML = '<tr><td colspan="9" class="empty-cell">데이터를 불러오지 못했습니다.</td></tr>';
+      mobileCards.innerHTML = '<div class="mobile-empty">데이터를 불러오지 못했습니다.</div>';
       setStatus('Supabase 테이블/RLS/권한 설정을 확인해 주세요.', 'error');
     }
   })();
