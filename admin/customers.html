@@ -1,84 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <title>관심고객 조회 | APT-GOGO</title>
-  <link rel="stylesheet" href="css/admin.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<title>관심고객 조회 | APT-GOGO</title>
+<link href="css/admin.css?v=20260913-3" rel="stylesheet"/>
 </head>
 <body class="admin-body">
-  <header class="admin-header">
-    <div>
-      <p class="admin-eyebrow">APT-GOGO ADMIN</p>
-      <h1>관심고객 조회</h1>
-    </div>
-    <div class="admin-user-box">
-      <span id="loginUser"></span>
-      <button id="logoutButton" type="button" class="secondary-button">로그아웃</button>
-    </div>
-  </header>
-
-  <main class="admin-main">
-    <section class="filter-card">
-      <div class="filter-grid">
-        <label>
-          <span>등록일 From</span>
-          <input id="dateFrom" type="date">
-        </label>
-        <label>
-          <span>등록일 To</span>
-          <input id="dateTo" type="date">
-        </label>
-        <label>
-          <span>고객명</span>
-          <input id="nameFilter" type="text" placeholder="고객명">
-        </label>
-        <label>
-          <span>전화번호</span>
-          <input id="mobileFilter" type="text" inputmode="numeric" placeholder="01012345678">
-        </label>
-        <button id="searchButton" class="primary-button" type="button">조회</button>
-      </div>
-    </section>
-
-    <section class="summary-row" aria-label="조회 요약">
-      <div><span>조회건수</span><b id="resultCount">0</b></div>
-      <div><span>방문예약</span><b id="reservedCount">0</b></div>
-      <button id="refreshButton" class="secondary-button" type="button">새로고침</button>
-    </section>
-
-    <section class="table-card">
-      <div class="table-scroll">
-        <table class="customer-table">
-          <thead>
-            <tr>
-              <th>등록일시</th>
-              <th>분양현장</th>
-              <th>고객명</th>
-              <th>전화번호</th>
-              <th>방문예약일</th>
-              <th>예약시간</th>
-              <th>남기실 말씀</th>
-              <th>마케팅동의</th>
-              <th>유입경로</th>
-            </tr>
-          </thead>
-          <tbody id="customerRows">
-            <tr><td colspan="9" class="empty-cell">조회 중...</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- 모바일 전용: 상담에 필요한 핵심정보만 카드형으로 표시 -->
-      <div id="mobileCustomerCards" class="mobile-customer-list" aria-label="모바일 관심고객 목록"></div>
-
-      <p id="queryStatus" class="admin-status" role="status" aria-live="polite"></p>
-    </section>
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="../js/supabase-config.js"></script>
-  <script src="js/customers.js?v=20260913-1"></script>
+<header class="admin-header">
+<div>
+<p class="admin-eyebrow">APT-GOGO ADMIN</p>
+<h1>관심고객 조회</h1>
+</div>
+<div class="admin-user-box">
+<span id="loginUser"></span>
+<button class="secondary-button" id="logoutButton" type="button">로그아웃</button>
+</div>
+</header>
+<main class="admin-main">
+<section class="filter-card">
+<div class="filter-grid">
+<label><span>등록일 From</span><input id="dateFrom" type="date"/></label>
+<label><span>등록일 To</span><input id="dateTo" type="date"/></label>
+<label><span>고객명</span><select id="customerFilter"><option value="">전체</option></select></label>
+<button class="primary-button" id="searchButton" type="button">조회</button>
+<button class="secondary-button completed-button" id="completedButton" type="button">확인완료 고객</button>
+</div>
+</section>
+<section aria-label="조회 요약" class="summary-row">
+<div><span>조회건수</span><b id="resultCount">0</b></div>
+<div><span>방문예약</span><b id="reservedCount">0</b></div>
+<button class="secondary-button" id="refreshButton" type="button">새로고침</button>
+</section>
+<section class="table-card">
+<div class="table-scroll">
+<table class="customer-table">
+<thead>
+<tr><th>등록일시</th><th>고객명</th><th>전화번호</th><th>방문예약일</th><th>예약시간</th><th>남기실 말씀</th><th>마케팅동의</th><th>유입경로</th><th>처리</th></tr>
+</thead>
+<tbody id="customerRows">
+<tr><td class="empty-cell" colspan="9">조회 중...</td></tr>
+</tbody>
+</table>
+</div>
+<!-- 모바일 전용: 상담에 필요한 핵심정보만 카드형으로 표시 -->
+<div aria-label="모바일 관심고객 목록" class="mobile-customer-list" id="mobileCustomerCards"></div>
+<p aria-live="polite" class="admin-status" id="queryStatus" role="status"></p>
+</section>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../js/site-config.js?v=20260913-3"></script><script src="../js/supabase-config.js"></script>
+<script src="js/customers.js?v=20260913-3"></script>
 </body>
 </html>
