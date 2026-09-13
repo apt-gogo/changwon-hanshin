@@ -1,108 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="창원 한신더휴 메가센텀 관심고객 등록">
-  <title>관심고객 등록 | 창원 한신더휴 메가센텀</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/reservation.css">
-  <link rel="stylesheet" href="css/custom.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="창원 한신더휴 메가센텀 관심고객 등록" name="description"/>
+<title>관심고객 등록 | 창원 한신더휴 메가센텀</title>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/reservation.css" rel="stylesheet"/>
+<link href="css/custom.css" rel="stylesheet"/>
 </head>
 <body class="reservation-body">
 <div id="reservationPage">
-
-  <header class="res-header">
-    <a class="res-brand" href="index.html" aria-label="창원 한신더휴 메가센텀 홈">
-      <span>HANSHIN</span>
-      <strong>THEHUE</strong>
-    </a>
-    <details class="res-menu">
-      <summary aria-label="메뉴">☰</summary>
-      <div class="res-menu-panel">
-        <a href="index.html">홈</a>
-        <a href="reservation.html">관심고객등록</a>
-        <a href="tel:1555-4940">전화상담 1555-4940</a>
-      </div>
-    </details>
-  </header>
-
-  <main>
-    <section class="res-intro res-intro-simple">
-      <div class="res-wrap">
-        <p class="res-eyebrow">REGISTRATION</p>
-        <h1>관심고객 등록</h1>
-        <div class="res-line"></div>
-      </div>
-    </section>
-
-    <section class="res-form-section">
-      <div class="res-wrap">
-        <form id="interestForm" class="res-form" novalidate>
-          <div class="res-field">
-            <label for="customerName">이름 <em>[필수]</em></label>
-            <input id="customerName" name="customerName" type="text" autocomplete="name" placeholder="이름을 입력해주세요" required>
-          </div>
-
-          <div class="res-field">
-            <label for="mobileNo">휴대폰번호 <em>[필수]</em></label>
-            <input id="mobileNo" name="mobileNo" type="tel" inputmode="numeric" autocomplete="tel" placeholder="01012345678" maxlength="11" required>
-            <small>숫자만 입력해주세요 (예: 01012345678)</small>
-          </div>
-
-          <div class="res-field">
-            <label for="visitDate">방문예약일 <span>[선택]</span></label>
-            <input id="visitDate" name="visitDate" type="date">
-          </div>
-
-          <div class="res-field">
-            <label for="visitTime">방문예약시간 <span>[선택]</span></label>
-            <select id="visitTime" name="visitTime">
-              <option value="">시간 선택</option>
-            </select>
-            <small>10:00부터 19:00까지 30분 단위로 선택할 수 있습니다.</small>
-          </div>
-
-          <div class="res-field">
-            <label for="customerMessage">남기실 말씀 <span>[선택]</span></label>
-            <textarea id="customerMessage" name="customerMessage" rows="4" maxlength="1000" placeholder="예) 전화주세요. 84A 타입이 궁금합니다."></textarea>
-          </div>
-
-          <div class="res-agree">
-            <label>
-              <input id="privacyAgree" type="checkbox" required>
-              <span><b>[필수]</b> 개인정보 수집 및 이용에 동의합니다.</span>
-            </label>
-            <details>
-              <summary>내용보기</summary>
-              <p>관심고객 등록 및 상담을 위해 이름, 휴대폰번호, 선택한 방문예약 정보를 수집합니다. 수집된 정보는 분양 상담 및 방문예약 안내 목적으로 이용됩니다.</p>
-            </details>
-          </div>
-
-          <div class="res-agree">
-            <label>
-              <input id="marketingAgree" type="checkbox">
-              <span><i>[선택]</i> 마케팅 정보 수신에 동의합니다.</span>
-            </label>
-            <details>
-              <summary>내용보기</summary>
-              <p>분양 일정, 모델하우스 오픈, 잔여세대 및 프로모션 관련 정보를 안내받기 위한 선택 동의 항목입니다.</p>
-            </details>
-          </div>
-
-          <button class="res-submit" type="submit">등록하기</button>
-          <p id="registrationStatus" class="res-status" role="status" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <nav class="res-mobile-actions" aria-label="모바일 빠른 메뉴">
-    <a class="res-action-call" href="tel:1555-4940"><span class="phone-icon" aria-hidden="true">☎</span>전화상담 1555-4940</a>
-    <a class="res-action-register" href="reservation.html">👤 관심고객등록</a>
-  </nav>
+<header class="res-header">
+<a aria-label="창원 한신더휴 메가센텀 홈" class="res-brand" href="index.html">
+<span>HANSHIN</span>
+<strong>THEHUE</strong>
+</a>
+<details class="res-menu">
+<summary aria-label="메뉴">☰</summary>
+<div class="res-menu-panel">
+<a href="index.html">홈</a>
+<a href="reservation.html">관심고객등록</a>
+<a data-contact-tel="" href="tel:1555-4940">전화상담 <span data-contact-phone="">1555-4940</span></a>
+</div>
+</details>
+</header>
+<main>
+<section class="res-intro res-intro-simple">
+<div class="res-wrap">
+<p class="res-eyebrow">REGISTRATION</p>
+<h1>관심고객 등록</h1>
+<div class="res-line"></div>
+</div>
+</section>
+<section class="res-form-section">
+<div class="res-wrap">
+<form class="res-form" id="interestForm" novalidate="">
+<div class="res-field">
+<label for="customerName">이름 <em>[필수]</em></label>
+<input autocomplete="name" id="customerName" name="customerName" placeholder="이름을 입력해주세요" required="" type="text"/>
+</div>
+<div class="res-field">
+<label for="mobileNo">휴대폰번호 <em>[필수]</em></label>
+<input autocomplete="tel" id="mobileNo" inputmode="numeric" maxlength="11" name="mobileNo" placeholder="01012345678" required="" type="tel"/>
+<small>숫자만 입력해주세요 (예: 01012345678)</small>
+</div>
+<div class="res-field">
+<label for="visitDate">방문예약일 <span>[선택]</span></label>
+<input id="visitDate" name="visitDate" type="date"/>
+</div>
+<div class="res-field">
+<label for="visitTime">방문예약시간 <span>[선택]</span></label>
+<select id="visitTime" name="visitTime">
+<option value="">시간 선택</option>
+</select>
+<small>10:00부터 19:00까지 30분 단위로 선택할 수 있습니다.</small>
+</div>
+<div class="res-field">
+<label for="customerMessage">남기실 말씀 <span>[선택]</span></label>
+<textarea id="customerMessage" maxlength="1000" name="customerMessage" placeholder="예) 전화주세요. 84A 타입이 궁금합니다." rows="4"></textarea>
+</div>
+<div class="res-agree">
+<label>
+<input id="privacyAgree" required="" type="checkbox"/>
+<span><b>[필수]</b> 개인정보 수집 및 이용에 동의합니다.</span>
+</label>
+<details>
+<summary>내용보기</summary>
+<p>관심고객 등록 및 상담을 위해 이름, 휴대폰번호, 선택한 방문예약 정보를 수집합니다. 수집된 정보는 분양 상담 및 방문예약 안내 목적으로 이용됩니다.</p>
+</details>
+</div>
+<div class="res-agree">
+<label>
+<input id="marketingAgree" type="checkbox"/>
+<span><i>[선택]</i> 마케팅 정보 수신에 동의합니다.</span>
+</label>
+<details>
+<summary>내용보기</summary>
+<p>분양 일정, 모델하우스 오픈, 잔여세대 및 프로모션 관련 정보를 안내받기 위한 선택 동의 항목입니다.</p>
+</details>
+</div>
+<button class="res-submit" type="submit">등록하기</button>
+<p aria-live="polite" class="res-status" id="registrationStatus" role="status"></p>
+</form>
+</div>
+</section>
+</main>
+<nav aria-label="모바일 빠른 메뉴" class="res-mobile-actions">
+<a class="res-action-call" data-contact-tel="" href="tel:1555-4940"><span aria-hidden="true" class="phone-icon">☎</span>전화상담 <span data-contact-phone="">1555-4940</span></a>
+<a class="res-action-register" href="reservation.html">👤 관심고객등록</a>
+</nav>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/reservation.js?v=20260913-2"></script></body>
+<script src="js/site-config.js?v=20260913-3"></script><script src="js/site-common.js?v=20260913-3"></script><script src="js/supabase-config.js"></script>
+<script src="js/reservation.js?v=20260913-3"></script>
+</body>
 </html>
