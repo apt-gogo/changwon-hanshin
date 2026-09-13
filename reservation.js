@@ -5,7 +5,7 @@
    1) 입력값 검증
    2) md_apt_site에서 현재 현장 ID 확인
    3) trn_apt_customer에 관심고객 정보 INSERT
-   4) 성공 메시지 표시 후 입력창 초기화
+   4) 성공 메시지 표시 후 메인 홈페이지로 자동 복귀
 
    보안
    - 홈페이지 방문자는 로그인하지 않은 anon 역할입니다.
@@ -100,6 +100,7 @@
     const mobileNo = normalizeMobile(mobile.value);
     const selectedVisitDate = visitDate.value || null;
     const selectedVisitTime = time.value || null;
+    const customerMessage = document.getElementById('customerMessage').value.trim() || null;
     const privacyAgree = document.getElementById('privacyAgree').checked;
     const marketingAgree = document.getElementById('marketingAgree').checked;
 
@@ -130,6 +131,7 @@
         mobile_no: mobileNo,
         visit_date: selectedVisitDate,
         visit_time: selectedVisitTime,
+        customer_message: customerMessage,
         privacy_agree_yn: 'Y',
         marketing_agree_yn: marketingAgree ? 'Y' : 'N',
         source_channel: 'HOMEPAGE',
