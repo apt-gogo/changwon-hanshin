@@ -5,7 +5,7 @@
    1) 입력값 검증
    2) md_apt_site에서 현재 현장 ID 확인
    3) trn_apt_customer에 관심고객 정보 INSERT
-   4) 성공 메시지 표시 후 입력창 초기화
+   4) 성공 메시지 표시 후 메인 홈페이지로 자동 복귀
 
    보안
    - 홈페이지 방문자는 로그인하지 않은 anon 역할입니다.
@@ -100,6 +100,7 @@
     const mobileNo = normalizeMobile(mobile.value);
     const selectedVisitDate = visitDate.value || null;
     const selectedVisitTime = time.value || null;
+    const customerMessage = document.getElementById('customerMessage').value.trim() || null;
     const privacyAgree = document.getElementById('privacyAgree').checked;
     const marketingAgree = document.getElementById('marketingAgree').checked;
 
@@ -130,11 +131,14 @@
         mobile_no: mobileNo,
         visit_date: selectedVisitDate,
         visit_time: selectedVisitTime,
+        customer_message: customerMessage,
         privacy_agree_yn: 'Y',
         marketing_agree_yn: marketingAgree ? 'Y' : 'N',
         source_channel: 'HOMEPAGE',
         source_detail: APT_GOGO_SITE_CODE
       };
+	
+      alert("메시지=[" + customerMessage + "]");
 
       const { error } = await client
         .from('trn_apt_customer')
@@ -142,8 +146,21 @@
 
       if (error) throw error;
 
-      form.reset();
-      setStatus('관심고객 등록이 완료되었습니다. 담당자가 확인 후 연락드리겠습니다.', 'success');
+     /* ------------------------------------------------------------
+       등록 완료 처리
+       - 등록화면을 다시 초기화해서 남겨두지 않습니다.
+       - 완료 메시지를 잠시 보여준 뒤 메인 홈페이지로 돌아갑니다.
+       ------------------------------------------------------------ */
+    setStatus(
+      '관심고객 등록이 완료되었습니다. 담당자가 확인 후 연락드리겠습니다.',
+      'success'
+    );
+
+    /* 등록 완료 후 2초 뒤 메인 홈페이지로 자동 복귀 */
+    setTimeout(() => {
+    window.location.replace('https://apt-gogo.github.io/changwon-hanshin/');
+    }, 2000);	
+
     } catch (error) {
       console.error('관심고객 등록 오류:', error);
       setStatus('등록 중 오류가 발생했습니다. 잠시 후 다시 시도하거나 전화상담을 이용해 주세요.', 'error');
