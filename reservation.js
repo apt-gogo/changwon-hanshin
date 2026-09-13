@@ -152,10 +152,10 @@
       'success'
     );
 
-    /* 1.5초 후 메인 홈페이지로 자동 복귀 */
+    /* 등록 완료 후 2초 뒤 메인 홈페이지로 자동 복귀 */
     setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 2000);		
+    window.location.replace('https://apt-gogo.github.io/changwon-hanshin/');
+    }, 2000);	
 
     } catch (error) {
       console.error('관심고객 등록 오류:', error);
