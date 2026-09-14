@@ -500,11 +500,11 @@
    - 클릭/탭/JavaScript 없이 세로 스크롤만 사용합니다.
    ------------------------------------------------------------ */
 #mc2 .unit-pages {
-  margin-top: 34px;   
+  margin-top: 1px;   /34/
 }
 
 #mc2 .unit-page {
-  min-height: 100svh;    
+  min-height: 50svh;    /100/
   display: flex;
   align-items: center;
   justify-content: center;
