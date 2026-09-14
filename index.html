@@ -6,7 +6,7 @@
   <meta name="description" content="창원 한신더휴 메가센텀 분양 안내">
   <title>창원 한신더휴 메가센텀</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="css/custom.css?v=20260914-1">
 </head>
 <body>
 <div id="mc2" data-phone="1555-4940">
@@ -32,9 +32,9 @@
       </p>
 
       <div class="ctas">
-        <a class="call hero-call call-card" href="tel:1555-4940" aria-label="모델하우스 방문예약 상담 1555-4940">
-          <span class="phone-icon" aria-hidden="true">☎</span>
-          <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number">1555-4940</strong></span>
+        <a class="call hero-call call-card" href="tel:1555-4940" data-contact-tel aria-label="모델하우스 방문예약 상담 1555-4940">
+          <span class="phone-icon" aria-hidden="true"></span>
+          <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number" data-contact-phone>1555-4940</strong></span>
         </a>
       </div>
     </div>
@@ -43,10 +43,10 @@
        02. QUICK STATS
        ========================================================= -->
   <div class="wrap stats">
-    <div><b>2,016</b><span>총 세대수</span></div>
-    <div><b>21개동</b><span>대단지 스케일</span></div>
-    <div><b>38~136㎡</b><span>다양한 주거타입</span></div>
-    <div><b>약 1.6대</b><span>세대당 주차</span></div>
+    <div><b data-total-households>2,016</b><span>총 세대수</span></div>
+    <div><b><span data-building-count>21</span>개동</b><span>대단지 스케일</span></div>
+    <div><b data-area-range>38~136㎡</b><span>다양한 주거타입</span></div>
+    <div><b data-parking-per-household>약 1.6대</b><span>세대당 주차</span></div>
   </div>
   </section>
 
@@ -82,34 +82,12 @@
       <h2>우리 가족에게 맞는<br><em>공간을 찾아보세요</em></h2>
       <p class="lead">라이프스타일과 가족 구성에 맞춰 다양한 주택형의 공간 설계를 확인해보세요.</p>
 
-      <!-- JS 없이 동작하는 UNIT PLAN : radio + label 방식 -->
-      <div class="unit-switch">
-        <input type="radio" name="mc-unit" id="mc-unit-38" checked>
-        <input type="radio" name="mc-unit" id="mc-unit-46">
-        <input type="radio" name="mc-unit" id="mc-unit-59">
-        <input type="radio" name="mc-unit" id="mc-unit-74a">
-        <input type="radio" name="mc-unit" id="mc-unit-74b">
-        <input type="radio" name="mc-unit" id="mc-unit-84a">
-        <input type="radio" name="mc-unit" id="mc-unit-84b">
-        <input type="radio" name="mc-unit" id="mc-unit-84c">
-        <input type="radio" name="mc-unit" id="mc-unit-101a">
-        <input type="radio" name="mc-unit" id="mc-unit-101b">
-        <input type="radio" name="mc-unit" id="mc-unit-136a">
-        <input type="radio" name="mc-unit" id="mc-unit-136b">
-        <div class="tabs" role="tablist" aria-label="주택형 선택">
-          <label for="mc-unit-38">38</label>
-          <label for="mc-unit-46">46</label>
-          <label for="mc-unit-59">59</label>
-          <label for="mc-unit-74a">74A</label>
-          <label for="mc-unit-74b">74B</label>
-          <label for="mc-unit-84a">84A</label>
-          <label for="mc-unit-84b">84B</label>
-          <label for="mc-unit-84c">84C</label>
-          <label for="mc-unit-101a">101A</label>
-          <label for="mc-unit-101b">101B</label>
-          <label for="mc-unit-136a">136A</label>
-          <label for="mc-unit-136b">136B</label>
-        </div>
+      <!-- =====================================================
+           UNIT PLAN : 전 평형 상시 펼침
+           - 클릭/탭 선택 방식 사용 안 함
+           - 어르신을 포함해 누구나 스크롤만으로 전 평형 확인
+           ===================================================== -->
+      <div class="unit-switch unit-all-open">
         <div class="unit">
           <img class="unit-38" src="images/unit-38.jpg" alt="38㎡ 주택형 평면도">
           <img class="unit-46" src="images/unit-46.jpg" alt="46㎡ 주택형 평면도">
@@ -231,9 +209,9 @@
     <div class="wrap">
       <small>CONSULTATION</small>
       <div class="ctas center">
-        <a class="call consult-call call-card" href="tel:1555-4940" aria-label="모델하우스 방문예약 상담 1555-4940">
-          <span class="phone-icon" aria-hidden="true">☎</span>
-          <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number">1555-4940</strong></span>
+        <a class="call consult-call call-card" href="tel:1555-4940" data-contact-tel aria-label="모델하우스 방문예약 상담 1555-4940">
+          <span class="phone-icon" aria-hidden="true"></span>
+          <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number" data-contact-phone>1555-4940</strong></span>
         </a>
       </div>
 
@@ -247,11 +225,14 @@
 
   <!-- 모바일 고정 액션바 -->
   <nav class="mobile" aria-label="모바일 빠른 메뉴">
-    <a class="mobile-call" href="tel:1555-4940"><span class="phone-icon" aria-hidden="true">☎</span> 전화상담 1555-4940</a>
+    <a class="mobile-call" href="tel:1555-4940" data-contact-tel><span class="phone-icon" aria-hidden="true"></span> 전화상담 <span data-contact-phone>1555-4940</span></a>
     <a class="mobile-register" href="reservation.html">👤 관심고객등록</a>
   </nav>
 
 </div>
 
+
+<script src="js/site-config.js?v=20260913-3"></script>
+<script src="js/site-common.js?v=20260913-3"></script>
 </body>
 </html>
