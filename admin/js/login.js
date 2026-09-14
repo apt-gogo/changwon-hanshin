@@ -24,7 +24,7 @@
 
   /* 이미 로그인된 상태라면 로그인 화면을 거치지 않고 시작화면으로 이동 */
   client.auth.getSession().then(({ data }) => {
-    if (data.session) location.href = 'home.html';
+    if (data.session) location.href = 'customers.html';
   });
 
   form.addEventListener('submit', async (event) => {
@@ -47,6 +47,6 @@
       return;
     }
 
-    location.href = 'home.html';
+    location.href = 'customers.html';
   });
 })();
