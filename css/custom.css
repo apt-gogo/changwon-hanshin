@@ -492,25 +492,52 @@
 }
 
 /* ------------------------------------------------------------
-   D-2. UNIT PLAN 전 평형 상시 펼침
+   D-2. UNIT PLAN : 평형별 한 페이지형 표시
+   ------------------------------------------------------------
+   - 12개 평형을 하나의 큰 박스에 묶지 않습니다.
+   - 각 평형을 독립된 화면 단위로 분리하여 스크롤 시
+     한 평형씩 자연스럽게 집중해서 볼 수 있게 합니다.
+   - 클릭/탭/JavaScript 없이 세로 스크롤만 사용합니다.
    ------------------------------------------------------------ */
-#mc2 .unit-all-open .unit {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 26px;
+#mc2 .unit-pages {
+  margin-top: 34px;
 }
 
-/* style.css의 '선택된 평형만 display:block' 규칙을 최종 덮어씀 */
-#mc2 .unit-all-open .unit img {
+#mc2 .unit-page {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 52px 0;
+  border-top: 1px solid #e2e9ef;
+}
+
+#mc2 .unit-page:first-child {
+  border-top: 0;
+}
+
+#mc2 .unit-page img {
   display: block !important;
   width: 100%;
   height: auto;
+  max-height: calc(100svh - 104px);
   object-fit: contain;
+  border-radius: 18px;
 }
 
 @media (max-width: 800px) {
-  #mc2 .unit-all-open .unit {
-    gap: 14px;
+  #mc2 .unit-pages {
+    margin-top: 22px;
+  }
+
+  #mc2 .unit-page {
+    min-height: 100svh;
+    padding: 24px 0 82px;
+  }
+
+  #mc2 .unit-page img {
+    max-height: calc(100svh - 106px);
+    border-radius: 12px;
   }
 
   #mc2 .call-card .phone-icon {
