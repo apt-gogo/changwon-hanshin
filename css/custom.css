@@ -50,9 +50,9 @@
      HERO와 CONSULTATION에 함께 적용됨
      ---------------------------------------------------------- */
   --call-label-size: 20px;       /* '모델하우스 방문예약 상담' */
-  --call-number-size: 30px;      /* '1555-4940' */
+  --call-number-size: 40px;      /* '1555-4940' */
   --call-number-color: #d8a437;  /* 전화번호 강조색 */
-  --call-icon-size: 28px;        /* 전화 아이콘 크기 */
+  --call-icon-size: 35px;        /* 전화 아이콘 크기 */
   --call-line-gap: 2px;          /* 상담문구 ↔ 전화번호 줄 간격 */
 
   /* ----------------------------------------------------------
@@ -78,9 +78,9 @@
     --mobile-hero-copy-size: 16px;      /* '2,016세대 메가스케일, 새로운 주거공간' */
 
     /* HERO 상담버튼 */
-    --mobile-call-label-size: 15px;     /* '모델하우스 방문예약 상담' */
-    --mobile-call-number-size: 23px;    /* '1555-4940' */
-    --mobile-call-icon-size: 24px;      /* 전화 아이콘 */
+    --mobile-call-label-size: 20px;     /* '모델하우스 방문예약 상담' */
+    --mobile-call-number-size: 35px;    /* '1555-4940' */
+    --mobile-call-icon-size: 30px;      /* 전화 아이콘 */
 
     /* HERO 하단 4개 통계 */
     --mobile-hero-stats-bottom: 82px;   /* 숫자↑ = 통계 4개가 위로 올라감 */
@@ -369,7 +369,7 @@
      3) 모바일 PAGE
      ---------------------------------------------------------- */
   #mc2 .page-section {
-    min-height: 100svh;
+    min-height: 58svh;
     align-items: center;
   }
 
