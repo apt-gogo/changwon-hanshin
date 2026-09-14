@@ -445,3 +445,75 @@
     font-size: 18px;
   }
 }
+
+
+/* ============================================================
+   D. 2026-09-14 사용성 개선
+   ------------------------------------------------------------
+   1) 전화 심볼 : 구형 전화기 문자(☎) 대신 수화기 SVG 사용
+      - OS/브라우저 이모지 모양에 영향을 받지 않음
+      - HERO / CONSULTATION / 모바일 하단 / 등록화면 공통
+
+   2) UNIT PLAN : 전 평형 상시 펼침
+      - 평형 선택 버튼 제거
+      - 클릭 없이 스크롤만으로 12개 평형 전체 확인
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   D-1. 전화 수화기 아이콘
+   ------------------------------------------------------------ */
+#mc2 .phone-icon,
+#reservationPage .phone-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 1em;
+  height: 1em;
+  margin-right: 7px;
+  background-color: currentColor;
+  font-size: var(--call-icon-size);
+  line-height: 1;
+  vertical-align: -0.12em;
+
+  /* Material-style phone handset silhouette */
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.61 21 3 13.39 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* HERO / CONSULTATION의 수화기는 기존 포인트 컬러 유지 */
+#mc2 .call-card .phone-icon {
+  color: #e63b78;
+}
+
+/* 모바일 하단 전화상담 수화기는 버튼 글자색과 동일하게 표시 */
+#mc2 .mobile .phone-icon,
+#reservationPage .phone-icon {
+  font-size: 1.08em;
+  color: currentColor;
+}
+
+/* ------------------------------------------------------------
+   D-2. UNIT PLAN 전 평형 상시 펼침
+   ------------------------------------------------------------ */
+#mc2 .unit-all-open .unit {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+/* style.css의 '선택된 평형만 display:block' 규칙을 최종 덮어씀 */
+#mc2 .unit-all-open .unit img {
+  display: block !important;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  #mc2 .unit-all-open .unit {
+    gap: 14px;
+  }
+
+  #mc2 .call-card .phone-icon {
+    font-size: var(--mobile-call-icon-size);
+  }
+}
