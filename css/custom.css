@@ -504,7 +504,7 @@
 }
 
 #mc2 .unit-page {
-  min-height: 100svh;
+  min-height: 60svh;
   display: flex;
   align-items: center;
   justify-content: center;
