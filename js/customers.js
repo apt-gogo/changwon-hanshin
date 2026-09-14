@@ -1,13 +1,19 @@
 /* ============================================================
-   관리자 관심고객 조회 / 1차 방어용
+   APT-GOGO 관리자 관심고객 조회 / 최종
    ------------------------------------------------------------
-   기본 화면 : 전체 미확인 고객(NEW)
-   확인 처리 : CONFIRMED로 변경 후 기본 목록에서 즉시 제외
-   확인완료 조회 : [확인완료 고객] 버튼으로 전환
-   날짜       : 기본 공란, 필요 시 기간검색
-   고객       : 이름 · 전화번호 ComboBox
+   기본 조회      : 미확인 고객(NEW) 전체
+   기간 조회      : 등록일 From / To 선택 시 해당 기간만 조회
+   고객 선택      : 고객명 · 전화번호 ComboBox
+   고객 확인 처리  : [확인함] 클릭 시 NEW -> CONFIRMED
+   조회상태 전환  : 버튼 문구가 현재 조회 상태(미확인 고객 / 확인완료 고객)를 표시
+
+   유지보수 원칙
+   - 현장별/운영별 변경값은 SITE_CONFIG에서 관리합니다.
+   - 이 파일에는 화면 동작과 DB 처리 로직만 둡니다.
    ============================================================ */
 (() => {
+  'use strict';
+
   if (!isSupabaseConfigReady()) {
     alert('Supabase 연결정보가 설정되지 않았습니다.');
     location.href = 'index.html';
@@ -22,17 +28,32 @@
 
   const client = createAptGogoSupabaseClient();
 
-  const rows = document.getElementById('customerRows');
-  const mobileCards = document.getElementById('mobileCustomerCards');
-  const status = document.getElementById('queryStatus');
-  const customerFilter = document.getElementById('customerFilter');
-  const completedButton = document.getElementById('completedButton');
-  const resultCount = document.getElementById('resultCount');
-  const reservedCount = document.getElementById('reservedCount');
+  // ------------------------------------------------------------
+  // 1. 화면 요소
+  // ------------------------------------------------------------
+  const el = {
+    rows: document.getElementById('customerRows'),
+    mobileCards: document.getElementById('mobileCustomerCards'),
+    status: document.getElementById('queryStatus'),
+    customerFilter: document.getElementById('customerFilter'),
+    completedButton: document.getElementById('completedButton'),
+    resultCount: document.getElementById('resultCount'),
+    reservedCount: document.getElementById('reservedCount'),
+    dateFrom: document.getElementById('dateFrom'),
+    dateTo: document.getElementById('dateTo'),
+    periodClearButton: document.getElementById('periodClearButton'),
+    searchButton: document.getElementById('searchButton'),
+    refreshButton: document.getElementById('refreshButton'),
+    logoutButton: document.getElementById('logoutButton'),
+    loginUser: document.getElementById('loginUser')
+  };
 
   let viewStatus = SITE_CONFIG.customer.statusNew;
   let customerIndex = new Map();
 
+  // ------------------------------------------------------------
+  // 2. 공통 함수
+  // ------------------------------------------------------------
   function escapeHtml(value) {
     return String(value ?? '')
       .replaceAll('&', '&amp;')
@@ -42,20 +63,25 @@
       .replaceAll("'", '&#039;');
   }
 
-  function formatDateTime(value) {
-    if (!value) return '-';
-    return new Intl.DateTimeFormat(SITE_CONFIG.ui.locale, {
-      timeZone: SITE_CONFIG.ui.timeZone,
-      year: 'numeric', month: '2-digit', day: '2-digit',
-      hour: '2-digit', minute: '2-digit', hour12: false
-    }).format(new Date(value));
-  }
-
   function formatMobile(value) {
     const n = String(value || '').replace(/\D/g, '');
-    if (n.length === 11) return `${n.slice(0,3)}-${n.slice(3,7)}-${n.slice(7)}`;
-    if (n.length === 10) return `${n.slice(0,3)}-${n.slice(3,6)}-${n.slice(6)}`;
+    if (n.length === 11) return `${n.slice(0, 3)}-${n.slice(3, 7)}-${n.slice(7)}`;
+    if (n.length === 10) return `${n.slice(0, 3)}-${n.slice(3, 6)}-${n.slice(6)}`;
     return n || '-';
+  }
+
+  function formatDateTime(value) {
+    if (!value) return '-';
+
+    return new Intl.DateTimeFormat(SITE_CONFIG.ui.locale, {
+      timeZone: SITE_CONFIG.ui.timeZone,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: false
+    }).format(new Date(value));
   }
 
   function localDayStartIso(dateText) {
@@ -67,29 +93,53 @@
   }
 
   function setStatus(message, type = '') {
-    status.textContent = message;
-    status.className = `admin-status ${type}`.trim();
+    if (!el.status) return;
+    el.status.textContent = message;
+    el.status.className = `admin-status ${type}`.trim();
   }
 
   function setViewStatus(nextStatus) {
     viewStatus = nextStatus;
+
     const isConfirmed = viewStatus === SITE_CONFIG.customer.statusConfirmed;
-    completedButton.textContent = isConfirmed ? '미확인 고객' : '확인완료 고객';
-    completedButton.classList.toggle('is-active', isConfirmed);
+    // 버튼 문구는 '이동 대상'이 아니라 현재 화면에 조회되는 고객 상태를 표시합니다.
+    el.completedButton.textContent = isConfirmed ? '확인완료 고객' : '미확인 고객';
+    el.completedButton.classList.toggle('is-active', isConfirmed);
   }
 
+  function setLoading(message = '조회 중...') {
+    el.rows.innerHTML = `<tr><td colspan="9" class="empty-cell">${escapeHtml(message)}</td></tr>`;
+    el.mobileCards.innerHTML = `<div class="mobile-empty">${escapeHtml(message)}</div>`;
+  }
+
+  function showError(error, message) {
+    console.error(error);
+    setLoading(message);
+    el.resultCount.textContent = '0';
+    el.reservedCount.textContent = '0';
+    setStatus(message, 'error');
+  }
+
+  // ------------------------------------------------------------
+  // 3. 로그인 세션
+  // ------------------------------------------------------------
   async function requireSession() {
     const { data, error } = await client.auth.getSession();
+
     if (error || !data.session) {
       location.href = 'index.html';
       return null;
     }
-    document.getElementById('loginUser').textContent = data.session.user.email || '';
+
+    el.loginUser.textContent = data.session.user.email || '';
     return data.session;
   }
 
-  /* 고객 ComboBox는 전체 활성 고객을 바인딩합니다.
-     이미 확인한 고객을 선택하면 해당 고객 상태에 맞춰 조회모드도 자동 전환합니다. */
+  // ------------------------------------------------------------
+  // 4. 고객 ComboBox
+  //    - 전체 활성 고객 표시
+  //    - 표시값: 고객명 · 전화번호
+  // ------------------------------------------------------------
   async function loadCustomerCombo() {
     const { data, error } = await client
       .from('trn_apt_customer')
@@ -100,46 +150,62 @@
 
     if (error) throw error;
 
-    customerIndex = new Map(data.map(item => [String(item.id), item]));
-    customerFilter.innerHTML = '<option value="">전체</option>';
+    const customers = data || [];
+    customerIndex = new Map(customers.map(item => [String(item.id), item]));
 
-    data.forEach(item => {
+    el.customerFilter.innerHTML = '<option value="">전체</option>';
+
+    customers.forEach(item => {
       const option = document.createElement('option');
-      option.value = item.id;
+      option.value = String(item.id);
       option.textContent = `${item.customer_name} · ${formatMobile(item.mobile_no)}`;
-      customerFilter.appendChild(option);
+      el.customerFilter.appendChild(option);
     });
   }
 
-  function buildBaseQuery() {
-    return client
+  // ------------------------------------------------------------
+  // 5. 고객 조회
+  // ------------------------------------------------------------
+  async function loadCustomers() {
+    setLoading();
+    setStatus('');
+
+    let query = client
       .from('trn_apt_customer')
       .select(`
-        id, created_at, apt_site_id, customer_name, mobile_no,
-        visit_date, visit_time, customer_message,
-        marketing_agree_yn, source_channel, customer_status,
-        md_apt_site ( site_name, site_code )
+        id,
+        created_at,
+        apt_site_id,
+        customer_name,
+        mobile_no,
+        visit_date,
+        visit_time,
+        customer_message,
+        customer_status,
+        marketing_agree_yn,
+        source_channel,
+        active_yn,
+        md_apt_site (
+          site_name,
+          site_code
+        )
       `)
       .eq('active_yn', 'Y')
       .eq('customer_status', viewStatus)
       .order('created_at', { ascending: false })
       .limit(SITE_CONFIG.customer.defaultListLimit);
-  }
 
-  async function loadCustomers() {
-    rows.innerHTML = '<tr><td colspan="9" class="empty-cell">조회 중...</td></tr>';
-    mobileCards.innerHTML = '<div class="mobile-empty">조회 중...</div>';
-    setStatus('');
+    if (el.dateFrom.value) {
+      query = query.gte('created_at', localDayStartIso(el.dateFrom.value));
+    }
 
-    let query = buildBaseQuery();
+    if (el.dateTo.value) {
+      query = query.lte('created_at', localDayEndIso(el.dateTo.value));
+    }
 
-    const dateFrom = document.getElementById('dateFrom').value;
-    const dateTo = document.getElementById('dateTo').value;
-    const customerId = customerFilter.value;
-
-    if (dateFrom) query = query.gte('created_at', localDayStartIso(dateFrom));
-    if (dateTo) query = query.lte('created_at', localDayEndIso(dateTo));
-    if (customerId) query = query.eq('id', Number(customerId));
+    if (el.customerFilter.value) {
+      query = query.eq('id', Number(el.customerFilter.value));
+    }
 
     const { data, error } = await query;
     if (error) throw error;
@@ -147,69 +213,99 @@
     renderCustomers(data || []);
   }
 
-  function renderCustomers(data) {
-    resultCount.textContent = data.length.toLocaleString(SITE_CONFIG.ui.locale);
-    reservedCount.textContent = data.filter(x => x.visit_date).length.toLocaleString(SITE_CONFIG.ui.locale);
+  // ------------------------------------------------------------
+  // 6. 조회결과 화면 표시
+  // ------------------------------------------------------------
+  function renderCustomers(customers) {
+    el.resultCount.textContent = String(customers.length);
+    el.reservedCount.textContent = String(customers.filter(item => item.visit_date).length);
 
-    if (!data.length) {
-      const label = viewStatus === SITE_CONFIG.customer.statusConfirmed ? '확인완료 고객' : '미확인 고객';
-      rows.innerHTML = `<tr><td colspan="9" class="empty-cell">조회된 ${label}이 없습니다.</td></tr>`;
-      mobileCards.innerHTML = `<div class="mobile-empty">조회된 ${label}이 없습니다.</div>`;
+    if (customers.length === 0) {
+      const label = viewStatus === SITE_CONFIG.customer.statusConfirmed
+        ? '확인완료 고객'
+        : '미확인 고객';
+
+      el.rows.innerHTML = `<tr><td colspan="9" class="empty-cell">조회된 ${label}이 없습니다.</td></tr>`;
+      el.mobileCards.innerHTML = `<div class="mobile-empty">조회된 ${label}이 없습니다.</div>`;
       return;
     }
 
     const canConfirm = viewStatus === SITE_CONFIG.customer.statusNew;
 
-    rows.innerHTML = data.map(item => `
-      <tr>
-        <td>${escapeHtml(formatDateTime(item.created_at))}</td>
-        <td class="customer-name">${escapeHtml(item.customer_name)}</td>
-        <td><a class="phone-link" href="tel:${escapeHtml(item.mobile_no)}">${escapeHtml(formatMobile(item.mobile_no))}</a></td>
-        <td>${escapeHtml(item.visit_date || '-')}</td>
-        <td>${escapeHtml(item.visit_time ? item.visit_time.slice(0,5) : '-')}</td>
-        <td class="customer-message">${escapeHtml(item.customer_message || '-')}</td>
-        <td>${item.marketing_agree_yn === 'Y' ? '동의' : '미동의'}</td>
-        <td>${escapeHtml(item.source_channel || '-')}</td>
-        <td class="action-cell">${canConfirm ? `<button class="confirm-button" type="button" data-confirm-id="${item.id}" data-confirm-name="${escapeHtml(item.customer_name)}">확인완료</button>` : '<span class="confirmed-label">확인완료</span>'}</td>
-      </tr>
-    `).join('');
+    el.rows.innerHTML = customers.map(item => {
+      const action = canConfirm
+        ? `<button class="confirm-button" type="button" data-confirm-id="${item.id}" data-confirm-name="${escapeHtml(item.customer_name)}">확인함</button>`
+        : '<span class="confirmed-label">확인완료</span>';
 
-    mobileCards.innerHTML = data.map(item => {
-      const visitDate = item.visit_date ? item.visit_date.slice(5).replace('-', '/') : '예약일 미정';
-      const visitTime = item.visit_time ? item.visit_time.slice(0, 5) : '';
+      return `
+        <tr>
+          <td>${escapeHtml(formatDateTime(item.created_at))}</td>
+          <td class="customer-name">${escapeHtml(item.customer_name)}</td>
+          <td><a class="phone-link" href="tel:${escapeHtml(item.mobile_no)}">${escapeHtml(formatMobile(item.mobile_no))}</a></td>
+          <td>${escapeHtml(item.visit_date || '-')}</td>
+          <td>${escapeHtml(item.visit_time ? item.visit_time.slice(0, 5) : '-')}</td>
+          <td class="customer-message">${escapeHtml(item.customer_message || '-')}</td>
+          <td>${item.marketing_agree_yn === 'Y' ? '동의' : '미동의'}</td>
+          <td>${escapeHtml(item.source_channel || '-')}</td>
+          <td class="action-cell">${action}</td>
+        </tr>
+      `;
+    }).join('');
+
+    el.mobileCards.innerHTML = customers.map(item => {
+      const visitDate = item.visit_date
+        ? item.visit_date.slice(5).replace('-', '/')
+        : '예약일 미정';
+
+      const visitTime = item.visit_time
+        ? item.visit_time.slice(0, 5)
+        : '';
+
       const message = item.customer_message || '남긴 메시지 없음';
+
+      const action = canConfirm
+        ? `<button class="confirm-button mobile-confirm-button" type="button" data-confirm-id="${item.id}" data-confirm-name="${escapeHtml(item.customer_name)}">확인함</button>`
+        : '<div class="mobile-confirmed-label">확인완료 고객</div>';
 
       return `
         <article class="mobile-customer-card">
-          <div class="mobile-card-topline">${escapeHtml(visitDate)}${visitTime ? ` ${escapeHtml(visitTime)}` : ''}</div>
+          <div class="mobile-card-topline">
+            ${escapeHtml(visitDate)}${visitTime ? ` ${escapeHtml(visitTime)}` : ''}
+          </div>
           <div class="mobile-card-customer">
             <strong>${escapeHtml(item.customer_name)}</strong>
             <span>·</span>
             <a class="phone-link" href="tel:${escapeHtml(item.mobile_no)}">${escapeHtml(formatMobile(item.mobile_no))}</a>
           </div>
           <div class="mobile-card-message">“${escapeHtml(message)}”</div>
-          ${canConfirm ? `<button class="confirm-button mobile-confirm-button" type="button" data-confirm-id="${item.id}" data-confirm-name="${escapeHtml(item.customer_name)}">확인완료</button>` : '<div class="mobile-confirmed-label">확인완료 고객</div>'}
+          ${action}
         </article>
       `;
     }).join('');
   }
 
+  // ------------------------------------------------------------
+  // 7. 확인완료 처리
+  // ------------------------------------------------------------
   async function confirmCustomer(customerId, customerName) {
-    const ok = window.confirm(`${customerName} 고객을 확인완료 처리하시겠습니까?`);
+    const ok = window.confirm(`${customerName} 고객을 확인 처리하시겠습니까?`);
     if (!ok) return;
 
-    setStatus('확인완료 처리 중...');
+    setStatus('고객 확인 처리 중...');
 
     const { error } = await client
       .from('trn_apt_customer')
-      .update({ customer_status: SITE_CONFIG.customer.statusConfirmed })
+      .update({
+        customer_status: SITE_CONFIG.customer.statusConfirmed
+      })
       .eq('id', Number(customerId))
       .eq('customer_status', SITE_CONFIG.customer.statusNew)
       .eq('active_yn', 'Y');
 
     if (error) throw error;
 
-    setStatus(`${customerName} 고객을 확인완료 처리했습니다.`, 'success');
+    setStatus(`${customerName} 고객을 확인했습니다.`, 'success');
+
     await loadCustomerCombo();
     await loadCustomers();
   }
@@ -219,77 +315,99 @@
     if (!button) return;
 
     button.disabled = true;
+
     try {
-      await confirmCustomer(button.dataset.confirmId, button.dataset.confirmName || '선택한');
+      await confirmCustomer(
+        button.dataset.confirmId,
+        button.dataset.confirmName || '선택한'
+      );
     } catch (error) {
       console.error(error);
-      setStatus('확인완료 처리 중 오류가 발생했습니다. 관리자 권한/RLS 설정을 확인해 주세요.', 'error');
+      setStatus('고객 확인 처리 중 오류가 발생했습니다.', 'error');
       button.disabled = false;
     }
   }
 
-  document.getElementById('searchButton').addEventListener('click', () => {
-    loadCustomers().catch(handleLoadError);
+  // ------------------------------------------------------------
+  // 8. 이벤트
+  // ------------------------------------------------------------
+  el.searchButton.addEventListener('click', () => {
+    loadCustomers().catch(error => {
+      showError(error, '조회 중 오류가 발생했습니다.');
+    });
   });
 
-  document.getElementById('refreshButton').addEventListener('click', async () => {
+  el.refreshButton.addEventListener('click', async () => {
     try {
       await loadCustomerCombo();
       await loadCustomers();
     } catch (error) {
-      handleLoadError(error);
+      showError(error, '새로고침 중 오류가 발생했습니다.');
     }
   });
 
-  completedButton.addEventListener('click', () => {
-    setViewStatus(
-      viewStatus === SITE_CONFIG.customer.statusNew
-        ? SITE_CONFIG.customer.statusConfirmed
-        : SITE_CONFIG.customer.statusNew
-    );
-    customerFilter.value = '';
-    loadCustomers().catch(handleLoadError);
+  // 등록일 From / To를 다시 빈 값으로 돌리고 현재 상태 전체를 재조회합니다.
+  el.periodClearButton.addEventListener('click', () => {
+    el.dateFrom.value = '';
+    el.dateTo.value = '';
+
+    loadCustomers().catch(error => {
+      showError(error, '조회 중 오류가 발생했습니다.');
+    });
   });
 
-  customerFilter.addEventListener('change', () => {
-    const selected = customerIndex.get(customerFilter.value);
-    if (selected?.customer_status) {
+  el.completedButton.addEventListener('click', () => {
+    const nextStatus = viewStatus === SITE_CONFIG.customer.statusNew
+      ? SITE_CONFIG.customer.statusConfirmed
+      : SITE_CONFIG.customer.statusNew;
+
+    setViewStatus(nextStatus);
+    el.customerFilter.value = '';
+
+    loadCustomers().catch(error => {
+      showError(error, '조회 중 오류가 발생했습니다.');
+    });
+  });
+
+  el.customerFilter.addEventListener('change', () => {
+    const selected = customerIndex.get(el.customerFilter.value);
+
+    if (selected && selected.customer_status) {
       setViewStatus(selected.customer_status);
     }
-    loadCustomers().catch(handleLoadError);
+
+    loadCustomers().catch(error => {
+      showError(error, '조회 중 오류가 발생했습니다.');
+    });
   });
 
-  rows.addEventListener('click', handleConfirmClick);
-  mobileCards.addEventListener('click', handleConfirmClick);
+  el.rows.addEventListener('click', handleConfirmClick);
+  el.mobileCards.addEventListener('click', handleConfirmClick);
 
-  document.getElementById('logoutButton').addEventListener('click', async () => {
+  el.logoutButton.addEventListener('click', async () => {
     await client.auth.signOut();
     location.href = 'index.html';
   });
 
-  function handleLoadError(error) {
-    console.error(error);
-    rows.innerHTML = '<tr><td colspan="9" class="empty-cell">조회 중 오류가 발생했습니다.</td></tr>';
-    mobileCards.innerHTML = '<div class="mobile-empty">조회 중 오류가 발생했습니다.</div>';
-    resultCount.textContent = '0';
-    reservedCount.textContent = '0';
-    setStatus('고객정보를 불러오지 못했습니다. Supabase 권한/RLS 설정을 확인해 주세요.', 'error');
-  }
-
+  // ------------------------------------------------------------
+  // 9. 초기화
+  // ------------------------------------------------------------
   async function init() {
     try {
       const session = await requireSession();
       if (!session) return;
 
-      /* 날짜는 의도적으로 초기값을 넣지 않습니다. 전체 미확인 고객이 기본입니다. */
-      document.getElementById('dateFrom').value = '';
-      document.getElementById('dateTo').value = '';
+      // 날짜는 의도적으로 비워 둡니다.
+      el.dateFrom.value = '';
+      el.dateTo.value = '';
+
+      // 첫 화면은 전체 미확인 고객입니다.
       setViewStatus(SITE_CONFIG.customer.statusNew);
 
       await loadCustomerCombo();
       await loadCustomers();
     } catch (error) {
-      handleLoadError(error);
+      showError(error, '고객정보를 불러오지 못했습니다.');
     }
   }
 
