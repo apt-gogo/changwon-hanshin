@@ -544,10 +544,3 @@
     font-size: var(--mobile-call-icon-size);
   }
 }
-
-/* 통계 카드 안의 숫자가 작게 나오는 현상 강제 수정 */
-#mc2 .hero .stats b sup,
-#mc2 .hero .stats b small {
-  font-size: 1em !important;
-  vertical-align: baseline !important;
-}
