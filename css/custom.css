@@ -369,7 +369,7 @@
      3) 모바일 PAGE
      ---------------------------------------------------------- */
   #mc2 .page-section {
-    min-height: 58svh;
+    min-height:100svh;
     align-items: center;
   }
 
@@ -504,7 +504,7 @@
 }
 
 #mc2 .unit-page {
-  min-height: 58svh;
+  min-height: 100svh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -520,7 +520,7 @@
   display: block !important;
   width: 100%;
   height: auto;
-  max-height: calc(58svh - 60px);
+  max-height: calc(100svh -102px);
   object-fit: contain;
   border-radius: 18px;
 }
