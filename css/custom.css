@@ -564,3 +564,26 @@
   /* 136만 가로형 때문에 조금 더 높게 허용 */
   #mc2 .unit-page.unit-136{aspect-ratio:1/1.55}
 }
+
+/* 2026-09-15 평면도 실제 이미지 재배치본 */
+@media (max-width:800px){
+  #mc2 .unit-page{
+    aspect-ratio: 1 / 1.50;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  #mc2 .unit-page img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center center;
+  }
+  #mc2 .unit-page.unit-84c{
+    aspect-ratio:1 / 1.50;
+  }
+  #mc2 .unit-page.unit-136{
+    aspect-ratio:1 / 1.62;
+  }
+}
