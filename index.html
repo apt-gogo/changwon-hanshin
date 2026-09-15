@@ -6,7 +6,7 @@
   <meta name="description" content="창원 한신더휴 메가센텀 분양 안내">
   <title>창원 한신더휴 메가센텀</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/custom.css?v=20260915-1">
+  <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
 <div id="mc2" data-phone="1555-4940">
@@ -33,21 +33,11 @@
 
       <div class="ctas">
         <a class="call hero-call call-card" href="tel:1555-4940" data-contact-tel aria-label="모델하우스 방문예약 상담 1555-4940">
-          <span class="phone-icon" aria-hidden="true"></span>
+          <span class="phone-icon" aria-hidden="true">☎</span>
           <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number" data-contact-phone>1555-4940</strong></span>
         </a>
       </div>
     </div>
-
-  <!-- =========================================================
-       02. QUICK STATS
-       ========================================================= -->
-  <div class="wrap stats">
-    <div><b data-total-households>2,016</b><span>총 세대수</span></div>
-    <div><b><span data-building-count>21</span>개동</b><span>대단지 스케일</span></div>
-    <div><b data-area-range>38~136㎡</b><span>다양한 주거타입</span></div>
-    <div><b data-parking-per-household>약 1.6대</b><span>세대당 주차</span></div>
-  </div>
   </section>
 
 
@@ -69,6 +59,14 @@
           <img class="site-overview" src="images/overview.png" alt="사업개요">
         </div>
       </div>
+      <!-- 핵심 사업수치 : HERO가 아닌 MEGA LIVING에서 표시 -->
+      <div class="mega-stats" aria-label="단지 핵심 정보">
+        <div class="mega-stat"><span class="mega-stat-icon icon-building" aria-hidden="true"></span><span><b data-total-households>2,016</b><small>총 세대수</small></span></div>
+        <div class="mega-stat"><span class="mega-stat-icon icon-location" aria-hidden="true"></span><span><b><span data-building-count>21</span>개동</b><small>대단지 스케일</small></span></div>
+        <div class="mega-stat"><span class="mega-stat-icon icon-home" aria-hidden="true"></span><span><b data-area-range>38~136㎡</b><small>다양한 주거타입</small></span></div>
+        <div class="mega-stat"><span class="mega-stat-icon icon-car" aria-hidden="true"></span><span><b data-parking-per-household>약 1.6대</b><small>세대당 주차</small></span></div>
+      </div>
+
     </div>
   </section>
 
@@ -82,25 +80,20 @@
       <h2>우리 가족에게 맞는<br><em>공간을 찾아보세요</em></h2>
       <p class="lead">라이프스타일과 가족 구성에 맞춰 다양한 주택형의 공간 설계를 확인해보세요.</p>
 
-      <!-- =====================================================
-           UNIT PLAN : 전 평형 개별 페이지형 표시
-           - 클릭/탭 선택 방식 사용 안 함
-           - 12개 평형을 각각 독립된 한 화면 단위로 분리
-           - 고객은 아래로 스크롤하면서 한 평형씩 집중해서 확인
-           ===================================================== -->
+      <!-- JS 없이 동작하는 UNIT PLAN : radio + label 방식 -->
       <div class="unit-pages" aria-label="전 평형 평면도">
-        <article class="unit-page"><img src="images/unit-38.jpg" alt="38㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-46.jpg" alt="46㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-59.jpg" alt="59㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-74a.jpg" alt="74A㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-74b.jpg" alt="74B㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-84a.jpg" alt="84A㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-84b.jpg" alt="84B㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-84c.jpg" alt="84C㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-101a.jpg" alt="101A㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-101b.jpg" alt="101B㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-136a.jpg" alt="136A㎡ 주택형 평면도"></article>
-        <article class="unit-page"><img src="images/unit-136b.jpg" alt="136B㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-portrait"><img src="images/unit-38.jpg" alt="38㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-portrait"><img src="images/unit-46.jpg" alt="46㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-59.jpg" alt="59㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-74a.jpg" alt="74A㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-74b.jpg" alt="74B㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-84a.jpg" alt="84A㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-84b.jpg" alt="84B㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape unit-84c"><img src="images/unit-84c.jpg" alt="84C㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-101a.jpg" alt="101A㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-landscape"><img src="images/unit-101b.jpg" alt="101B㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-wide unit-136"><img src="images/unit-136a.jpg" alt="136A㎡ 주택형 평면도"></article>
+        <article class="unit-page unit-wide unit-136"><img src="images/unit-136b.jpg" alt="136B㎡ 주택형 평면도"></article>
       </div>
     </div>
   </section>
@@ -209,7 +202,7 @@
       <small>CONSULTATION</small>
       <div class="ctas center">
         <a class="call consult-call call-card" href="tel:1555-4940" data-contact-tel aria-label="모델하우스 방문예약 상담 1555-4940">
-          <span class="phone-icon" aria-hidden="true"></span>
+          <span class="phone-icon" aria-hidden="true">☎</span>
           <span class="call-text"><span class="call-label">모델하우스 방문예약 상담</span><strong class="call-number" data-contact-phone>1555-4940</strong></span>
         </a>
       </div>
@@ -224,7 +217,7 @@
 
   <!-- 모바일 고정 액션바 -->
   <nav class="mobile" aria-label="모바일 빠른 메뉴">
-    <a class="mobile-call" href="tel:1555-4940" data-contact-tel><span class="phone-icon" aria-hidden="true"></span> 전화상담 <span data-contact-phone>1555-4940</span></a>
+    <a class="mobile-call" href="tel:1555-4940" data-contact-tel><span class="phone-icon" aria-hidden="true">☎</span> 전화상담 <span data-contact-phone>1555-4940</span></a>
     <a class="mobile-register" href="reservation.html">👤 관심고객등록</a>
   </nav>
 
