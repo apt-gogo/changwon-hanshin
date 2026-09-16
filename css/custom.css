@@ -718,3 +718,11 @@
   }
 }
 
+@media (max-width:800px) {
+
+    #mc2 .hero-benefit {
+        transform: translateY(-60px) !important;
+    }
+
+}
+
