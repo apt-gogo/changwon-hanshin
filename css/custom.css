@@ -180,7 +180,8 @@
   text-decoration: none;
 }
 
-#mc2 .call-card .phone-icon {
+#mc2 .call-card .phone-icon,
+#mc2 .mobile .phone-icon {
   display:inline-block;
   width:var(--call-icon-size);
   height:var(--call-icon-size);
