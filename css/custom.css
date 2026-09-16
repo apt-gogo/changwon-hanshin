@@ -513,7 +513,7 @@
 /* PC 평면도 프레임 */
 #mc2 .unit-page{
     width:100%;
-    min-height:520px;   /* ← 이 값으로 조절 */
+    min-height:1000px;   /* ← 이 값으로 조절 */
     aspect-ratio:auto;
     display:flex;
     align-items:center;
