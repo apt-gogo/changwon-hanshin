@@ -293,7 +293,7 @@
 
   #mc2 .hero-in {
     transform: none;
-    padding: var(--mobile-hero-top-gap) 0 0;
+    padding: 0;
   }
 
   #mc2 .hero h1 {
@@ -598,19 +598,6 @@
    MOBILE
    ========================================================= */
 @media (max-width:800px){
-
-  /* HERO 최상단 프로모션 이미지 */
-    #mc2 .hero .hero-benefit{
-        margin-top:-60px;
-    }
-
-    #mc2 .hero .hero-benefit img{
-        display:block;
-        width:100%;
-        height:auto;
-   }    
-
-
    
   /* -------------------------------------------------------
      MEGA LIVING 통계
