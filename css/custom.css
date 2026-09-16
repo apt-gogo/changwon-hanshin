@@ -599,11 +599,18 @@
    ========================================================= */
 @media (max-width:800px){
 
-   /* HERO 프로모션 이미지 위치 */
-    #mc2 .hero-benefit{
-        position:relative;
-        top:-60px;
+  /* HERO 최상단 프로모션 이미지 */
+    #mc2 .hero .hero-benefit{
+        margin-top:-60px;
     }
+
+    #mc2 .hero .hero-benefit img{
+        display:block;
+        width:100%;
+        height:auto;
+   }    
+
+
    
   /* -------------------------------------------------------
      MEGA LIVING 통계
