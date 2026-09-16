@@ -496,8 +496,21 @@
 #mc2 .icon-home{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3z'/%3E%3C/svg%3E")}
 #mc2 .icon-car{-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11l2 2v6h-2v2h-2v-2H7v2H5v-2H3v-6l2-2zm2.1 0h9.8l-1.2-4H8.3l-1.2 4zM7 16a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm10 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11l2 2v6h-2v2h-2v-2H7v2H5v-2H3v-6l2-2zm2.1 0h9.8l-1.2-4H8.3l-1.2 4zM7 16a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm10 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z'/%3E%3C/svg%3E")}
 
+/* =========================================================
+   UNIT PLAN
+   - PC : 일정한 프레임 안에서 평면도 표시
+   - MOBILE : 원본 이미지 비율 그대로 표시
+   ========================================================= */
+
 /* 전 평형 : 이미지 선택 UI 없이 모두 펼침 */
-#mc2 .unit-pages{display:grid;grid-template-columns:1fr;gap:18px;margin-top:20px}
+#mc2 .unit-pages{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:18px;
+  margin-top:20px;
+}
+
+/* PC 평면도 프레임 */
 #mc2 .unit-page{
   width:100%;
   min-height:0;
@@ -508,6 +521,7 @@
   overflow:hidden;
   background:#fff;
 }
+
 #mc2 .unit-page img{
   display:block;
   width:100%;
@@ -517,73 +531,85 @@
   margin:0 auto;
 }
 
-/* 84C도 84A와 동일한 중앙 배치 규칙 */
-#mc2 .unit-page.unit-84c{aspect-ratio:16/10}
+/* PC 예외 */
+#mc2 .unit-page.unit-84c{
+  aspect-ratio:16/10;
+}
 
-/* 136㎡는 가로형 원본을 최대한 크게 보이게 하고 높이만 예외 허용 */
-#mc2 .unit-page.unit-136{aspect-ratio:16/11}
+#mc2 .unit-page.unit-136{
+  aspect-ratio:16/11;
+}
 
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 @media (max-width:800px){
+
+  /* MEGA LIVING 통계 */
   #mc2 .mega-stats{
     grid-template-columns:repeat(4,minmax(0,1fr));
     gap:5px;
     margin-top:10px;
   }
+
   #mc2 .mega-stat{
     min-height:56px;
     gap:5px;
     padding:7px 5px;
     border-radius:8px;
   }
+
   #mc2 .mega-stat-icon{
-    width:20px;height:20px;flex-basis:20px;
+    width:20px;
+    height:20px;
+    flex-basis:20px;
     padding-right:5px;
     -webkit-mask-size:20px 20px;
     mask-size:20px 20px;
   }
-  #mc2 .mega-stat b{font-size:clamp(12px,3.5vw,16px)}
-  #mc2 .mega-stat small{font-size:8px;margin-top:3px}
 
-  /* 모바일 핵심: 한 평형이 폭 대비 과도하게 길어지지 않게 */
-  #mc2 .unit-pages{gap:10px;margin-top:12px}
+  #mc2 .mega-stat b{
+    font-size:clamp(12px,3.5vw,16px);
+  }
+
+  #mc2 .mega-stat small{
+    font-size:8px;
+    margin-top:3px;
+  }
+
+
+  /* -------------------------------------------------------
+     모바일 평면도
+     강제 세로비율을 사용하지 않고 원본 이미지 비율로 표시
+     ------------------------------------------------------- */
+  #mc2 .unit-pages{
+    gap:10px;
+    margin-top:12px;
+  }
+
   #mc2 .unit-page{
     width:100%;
-    aspect-ratio:1/1.42;
+    min-height:0;
+    aspect-ratio:auto;
+    display:block;
     padding:0;
+    overflow:visible;
+    background:#fff;
   }
+
   #mc2 .unit-page img{
+    display:block;
     width:100%;
-    height:100%;
+    height:auto;
     object-fit:contain;
     object-position:center center;
+    margin:0 auto;
   }
 
-  /* 84C는 84A와 완전히 같은 모바일 프레임 */
-  #mc2 .unit-page.unit-84c{aspect-ratio:1/1.42}
-
-  /* 136만 가로형 때문에 조금 더 높게 허용 */
-  #mc2 .unit-page.unit-136{aspect-ratio:1/1.55}
-}
-
-/* 2026-09-15 평면도 실제 이미지 재배치본 */
-@media (max-width:800px){
-  #mc2 .unit-page{
-    aspect-ratio: 1 / 1.50;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-  }
-  #mc2 .unit-page img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    object-position:center center;
-  }
-  #mc2 .unit-page.unit-84c{
-    aspect-ratio:1 / 1.50;
-  }
+  /* 모바일에서는 평형별 강제 프레임 비율도 해제 */
+  #mc2 .unit-page.unit-84c,
   #mc2 .unit-page.unit-136{
-    aspect-ratio:1 / 1.62;
+    aspect-ratio:auto;
   }
 }
