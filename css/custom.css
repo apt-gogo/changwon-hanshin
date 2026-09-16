@@ -601,12 +601,13 @@
 
   #mc2 .unit-page img{
     display:block;
-    width:100%;
+    width:115%;
+    max-width:none;
     height:auto;
     object-fit:contain;
     object-position:center center;
-    margin:0 auto;
-  }
+    margin-left:-7.5%;
+}
 
   /* 모바일에서는 평형별 강제 프레임 비율도 해제 */
   #mc2 .unit-page.unit-84c,
