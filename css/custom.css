@@ -79,7 +79,7 @@
 
     /* HERO 상담버튼 */
     --mobile-call-label-size: 20px;     /* '모델하우스 방문예약 상담' */
-    --mobile-call-number-size: 80px;    /* '1555-4940' */
+    --mobile-call-number-size: 60px;    /* '1555-4940' */
     --mobile-call-icon-size: 30px;      /* 전화 아이콘 */
 
     /* HERO 하단 4개 통계 */
