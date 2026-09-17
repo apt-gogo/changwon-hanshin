@@ -2,74 +2,119 @@
    APT-GOGO 현장 공통 설정
    ------------------------------------------------------------
    현장별 또는 운영 중 변경될 가능성이 있는 값은 이 파일에서 관리합니다.
-   전화번호, 현장명, 사이트코드, URL, 예약시간, 고객상태 등을
-   HTML/업무 JS에 직접 반복 기입하지 않습니다.
+
+   - 현장정보
+   - 담당자(agent)
+   - 전화번호
+   - 사이트 URL
+   - 예약시간
+   - 고객상태
+
+   HTML / 업무 JS에 동일 값을 반복 기입하지 않습니다.
    ============================================================ */
 
 const SITE_CONFIG = Object.freeze({
-  site: {
-    code: 'changwon-hanshin',
-    name: '창원 한신더휴 메가센텀',
-    address: '경상남도 창원시 마산회원구 회원2동 480-31번지 일대',
-    homepageUrl: 'https://apt-gogo.github.io/changwon-hanshin/',
-    reservationUrl: 'https://apt-gogo.github.io/changwon-hanshin/reservation.html',
-    adminUrl: 'https://apt-gogo.github.io/changwon-hanshin/admin/'
-  },
 
-  contact: {
-    phoneDisplay: '055-602-0287',
-    phoneTel: '0556020287',
-    consultationLabel: '모델하우스 방문예약 상담'
-  },
-   
-  contact: {
-    consultationLabel: '모델하우스 방문예약 상담'
-   },
-   
-   agent: {
-       defaultCode: 'A001',
-   
-       list: {
-           A001: {
-               name: '아내',
-               phoneDisplay: '055-602-0287',
-               phoneTel: '0556020287'
-           },
-   
-           A002: {
-               name: '김희주',
-               phoneDisplay: '055-604-1799',
-               phoneTel: '0556041799'
-           }           
-       }
-   },
+    /* --------------------------------------------------------
+       1. 현장 기본정보
+       -------------------------------------------------------- */
+    site: {
+        code: 'changwon-hanshin',
+        name: '창원 한신더휴 메가센텀',
+        address: '경상남도 창원시 마산회원구 회원2동 480-31번지 일대',
 
-   
-  project: {
-    totalHouseholds: '2,016',
-    buildingCount: '21',
-    areaRange: '38~136㎡',
-    parkingCount: '3,223',
-    parkingPerHousehold: '약 1.6대',
-    generalSaleHouseholds: '1,139'
-  },
+        homepageUrl:
+            'https://apt-gogo.github.io/changwon-hanshin/',
 
-  reservation: {
-    startTime: '10:00',
-    endTime: '19:00',
-    intervalMinutes: 30,
-    successRedirectDelayMs: 2000
-  },
+        reservationUrl:
+            'https://apt-gogo.github.io/changwon-hanshin/reservation.html',
 
-  customer: {
-    statusNew: 'NEW',
-    statusConfirmed: 'CONFIRMED',
-    sourceChannel: 'HOMEPAGE',
-    defaultListLimit: 500
-  },
+        adminUrl:
+            'https://apt-gogo.github.io/changwon-hanshin/admin/'
+    },
 
-  ui: {
-    locale: 'ko-KR',
-    timeZone: 'Asia/Seoul'
-  }
+
+    /* --------------------------------------------------------
+       2. 상담 공통정보
+       -------------------------------------------------------- */
+    contact: {
+        consultationLabel: '모델하우스 방문예약 상담'
+    },
+
+
+    /* --------------------------------------------------------
+       3. 분양 담당자(agent)
+       --------------------------------------------------------
+       접속 예:
+       ?agent=A001
+       ?agent=A002
+
+       agent가 없거나 잘못된 코드이면
+       defaultCode 담당자를 사용합니다.
+       -------------------------------------------------------- */
+    agent: {
+
+        defaultCode: 'A001',
+
+        list: {
+
+            A001: {
+                name: '아내',
+                phoneDisplay: '055-602-0287',
+                phoneTel: '0556020287'
+            },
+
+            A002: {
+                name: '김희주',
+                phoneDisplay: '055-604-1799',
+                phoneTel: '0556041799'
+            }
+
+        }
+    },
+
+
+    /* --------------------------------------------------------
+       4. 사업 기본정보
+       -------------------------------------------------------- */
+    project: {
+        totalHouseholds: '2,016',
+        buildingCount: '21',
+        areaRange: '38~136㎡',
+        parkingCount: '3,223',
+        parkingPerHousehold: '약 1.6대',
+        generalSaleHouseholds: '1,139'
+    },
+
+
+    /* --------------------------------------------------------
+       5. 방문예약 설정
+       -------------------------------------------------------- */
+    reservation: {
+        startTime: '10:00',
+        endTime: '19:00',
+        intervalMinutes: 30,
+        successRedirectDelayMs: 2000
+    },
+
+
+    /* --------------------------------------------------------
+       6. 고객관리 설정
+       -------------------------------------------------------- */
+    customer: {
+        statusNew: 'NEW',
+        statusConfirmed: 'CONFIRMED',
+        sourceChannel: 'HOMEPAGE',
+        defaultListLimit: 500
+    },
+
+
+    /* --------------------------------------------------------
+       7. 화면 공통
+       -------------------------------------------------------- */
+    ui: {
+        locale: 'ko-KR',
+        timeZone: 'Asia/Seoul'
+    }
+
 });
