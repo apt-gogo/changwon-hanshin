@@ -21,7 +21,30 @@ const SITE_CONFIG = Object.freeze({
     phoneTel: '0556020287',
     consultationLabel: '모델하우스 방문예약 상담'
   },
+   
+  contact: {
+    consultationLabel: '모델하우스 방문예약 상담'
+   },
+   
+   agent: {
+       defaultCode: 'A001',
+   
+       list: {
+           A001: {
+               name: '아내',
+               phoneDisplay: '055-602-0287',
+               phoneTel: '0556020287'
+           },
+   
+           A002: {
+               name: '김희주',
+               phoneDisplay: '055-604-1799',
+               phoneTel: '0556041799'
+           }           
+       }
+   },
 
+   
   project: {
     totalHouseholds: '2,016',
     buildingCount: '21',
