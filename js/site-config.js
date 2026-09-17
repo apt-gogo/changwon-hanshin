@@ -17,8 +17,8 @@ const SITE_CONFIG = Object.freeze({
   },
 
   contact: {
-    phoneDisplay: '1555-0000',
-    phoneTel: '15550000',
+    phoneDisplay: '055-602-0287',
+    phoneTel: '0556020287',
     consultationLabel: '모델하우스 방문예약 상담'
   },
 
